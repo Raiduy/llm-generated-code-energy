@@ -34,7 +34,7 @@ class RunnerConfig:
 
     """The time Experiment Runner will wait after a run completes.
     This can be essential to accommodate for cooldown periods on some systems."""
-    time_between_runs_in_ms:    int             = 1000
+    time_between_runs_in_ms:    int             = 60000
 
     # Dynamic configurations can be one-time satisfied here before the program takes the config as-is
     # e.g. Setting some variable based on some criteria
@@ -60,7 +60,7 @@ class RunnerConfig:
         representing each run performed"""
         sampling_factor = FactorModel("sampling", [200])
         llm = FactorModel("llm", ['chatgpt_temp_0.0', 'gpt-4_temp_0.0'])
-        code = FactorModel("code", ['4'])#, '61', '79', '63', '90', '53', '66', '52', '16'])
+        code = FactorModel("code", ['4', '61', '79', '63', '90', '53', '66', '52', '16'])
         self.run_table_model = RunTableModel(
             factors = [sampling_factor, llm, code],
             data_columns=['TOTAL_DRAM_ENERGY (J)', 'TOTAL_PACKAGE_ENERGY (J)',
@@ -79,7 +79,11 @@ class RunnerConfig:
     def before_run(self) -> None:
         """Perform any activity required before starting a run.
         No context is available here as the run is not yet active (BEFORE RUN)"""
-        pass
+        
+        git_cmd = 'git add . && git commit -m "Experiment checkpoint" && git push'
+        
+        git_log = open('./git_log.log', 'a')
+        self.profiler = subprocess.Popen(shlex.split(git_cmd), stdout=git_log)
 
     def start_run(self, context: RunnerContext) -> None:
         """Perform any activity required for starting the run here.
@@ -95,7 +99,7 @@ class RunnerConfig:
 
         profiler_cmd = f'sudo energibridge \
                         --interval {sampling_interval} \
-                        --max-execution 20 \
+                        --max-execution 300 \
                         --output {context.run_dir / "energibridge.csv"} \
                         --summary \
                         python3 ../code/{llm}/{code}.py'
@@ -109,8 +113,8 @@ class RunnerConfig:
 
         # No interaction. We just run it for XX seconds.
         # Another example would be to wait for the target to finish, e.g. via `self.target.wait()`
-        output.console_log("Running program for 20 seconds")
-        time.sleep(20)
+        output.console_log("Running program for 5 minutes")
+        time.sleep(300)
 
     def stop_measurement(self, context: RunnerContext) -> None:
         """Perform any activity here required for stopping measurements."""
@@ -126,7 +130,7 @@ class RunnerConfig:
         You can also store the raw measurement data under `context.run_dir`
         Returns a dictionary with keys `self.run_table_model.data_columns` and their values populated"""
 
-        # energibridge.csv - Power consumption of the whole system
+        # energibridge.csv - Power consumption
         df = pd.read_csv(context.run_dir / "energibridge.csv")
         with open(context.run_dir / "energibridge.log", 'r') as reader:
             contents = reader.read()
