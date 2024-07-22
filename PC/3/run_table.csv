@@ -22,7 +22,29 @@ Name: TOTAL_MEMORY, Length: 1501, dtype: int64","0       8589930496
 1499    8589930496
 1500    8589930496
 Name: TOTAL_SWAP, Length: 1501, dtype: int64",1803402347.107,0.0,16756.036
-run_1_repetition_0,TODO,200,deepseek-coder-33b-instruct_temp_0.0,61, , , , , , , , , 
+run_1_repetition_0,DONE,200,deepseek-coder-33b-instruct_temp_0.0,61,0,305128328.622,79825686.041,0,"0       67221327872
+1       67221327872
+2       67221327872
+3       67221327872
+4       67221327872
+           ...     
+1496    67221327872
+1497    67221327872
+1498    67221327872
+1499    67221327872
+1500    67221327872
+Name: TOTAL_MEMORY, Length: 1501, dtype: int64","0       8589930496
+1       8589930496
+2       8589930496
+3       8589930496
+4       8589930496
+           ...    
+1496    8589930496
+1497    8589930496
+1498    8589930496
+1499    8589930496
+1500    8589930496
+Name: TOTAL_SWAP, Length: 1501, dtype: int64",1798085902.838,0.0,16770.146
 run_2_repetition_0,TODO,200,deepseek-coder-33b-instruct_temp_0.0,79, , , , , , , , , 
 run_3_repetition_0,TODO,200,deepseek-coder-33b-instruct_temp_0.0,63, , , , , , , , , 
 run_4_repetition_0,TODO,200,deepseek-coder-33b-instruct_temp_0.0,90, , , , , , , , , 
