@@ -80,11 +80,10 @@ class RunnerConfig:
         """Perform any activity required before starting a run.
         No context is available here as the run is not yet active (BEFORE RUN)"""
         
-        git_cmd = 'git add -A && git commit -m "Experiment checkpoint" && git push'
+        subprocess.call(f'git add ../ && git commit -m "Experiment checkpoint" && git push \
+                        >> ./{self.name}/git_log.log', 
+                        shell=True)
         
-        git_log = open(f'./{self.name}/git_log.log', 'a')
-        self.profiler = subprocess.Popen(shlex.split(git_cmd), stdout=git_log, stderr=git_log)
-
     def start_run(self, context: RunnerContext) -> None:
         """Perform any activity required for starting the run here.
         For example, starting the target system to measure.
