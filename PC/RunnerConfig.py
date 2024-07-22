@@ -67,7 +67,8 @@ class RunnerConfig:
                           'TOTAL_PP0_ENERGY (J)', 'TOTAL_PP1_ENERGY (J)', 
                           'TOTAL_MEMORY', 'TOTAL_SWAP',
                           'AVG_USED_MEMORY', 'AVG_USED_SWAP', 
-                          'TOTAL_ENERGY (J)']
+                          'TOTAL_ENERGY (J)'],
+            repetitions=20
         )
         return self.run_table_model
 
