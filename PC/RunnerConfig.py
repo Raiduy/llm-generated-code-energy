@@ -22,7 +22,7 @@ class RunnerConfig:
 
     # ================================ USER SPECIFIC CONFIG ================================
     """The name of the experiment."""
-    name:                       str             = "1"
+    name:                       str             = "3"
 
     """The path in which Experiment Runner will create a folder with the name `self.name`, in order to store the
     results from this experiment. (Path does not need to exist - it will be created if necessary.)
@@ -59,7 +59,7 @@ class RunnerConfig:
         """Create and return the run_table model here. A run_table is a List (rows) of tuples (columns),
         representing each run performed"""
         sampling_factor = FactorModel("sampling", [200])
-        llm = FactorModel("llm", ['chatgpt_temp_0.0', 'gpt-4_temp_0.0'])
+        llm = FactorModel("llm", ['deepseek-coder-33b-instruct_temp_0.0', 'wizardcoder-33b-1.1_temp_0.0'])
         code = FactorModel("code", ['4', '61', '79', '63', '90', '53', '66', '52', '16'])
         self.run_table_model = RunTableModel(
             factors = [sampling_factor, llm, code],
@@ -80,10 +80,10 @@ class RunnerConfig:
         """Perform any activity required before starting a run.
         No context is available here as the run is not yet active (BEFORE RUN)"""
         
-        git_cmd = 'git add . && git commit -m "Experiment checkpoint" && git push'
+        git_cmd = 'git add -A && git commit -m "Experiment checkpoint" && git push'
         
-        git_log = open('./git_log.log', 'a')
-        self.profiler = subprocess.Popen(shlex.split(git_cmd), stdout=git_log)
+        git_log = open(f'./{self.name}/git_log.log', 'a')
+        self.profiler = subprocess.Popen(shlex.split(git_cmd), stdout=git_log, stderr=git_log)
 
     def start_run(self, context: RunnerContext) -> None:
         """Perform any activity required for starting the run here.
