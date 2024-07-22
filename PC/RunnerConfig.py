@@ -67,7 +67,8 @@ class RunnerConfig:
                           'TOTAL_PP0_ENERGY (J)', 'TOTAL_PP1_ENERGY (J)', 
                           'TOTAL_MEMORY', 'TOTAL_SWAP',
                           'AVG_USED_MEMORY', 'AVG_USED_SWAP', 
-                          'TOTAL_ENERGY (J)']
+                          'TOTAL_ENERGY (J)'],
+            repetitions=20,
         )
         return self.run_table_model
 
@@ -79,8 +80,6 @@ class RunnerConfig:
     def before_run(self) -> None:
         """Perform any activity required before starting a run.
         No context is available here as the run is not yet active (BEFORE RUN)"""
-        
-        git_cmd = ''
         
         git_log = open(f'./{self.name}/git_log.log', 'a')
         subprocess.call('git add --all && git commit -m "Experiment checkpoint" && git push',
