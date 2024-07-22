@@ -22,12 +22,12 @@ class RunnerConfig:
 
     # ================================ USER SPECIFIC CONFIG ================================
     """The name of the experiment."""
-    name:                       str             = "new_runner_experiment"
+    name:                       str             = "1"
 
     """The path in which Experiment Runner will create a folder with the name `self.name`, in order to store the
     results from this experiment. (Path does not need to exist - it will be created if necessary.)
     Output path defaults to the config file's path, inside the folder 'experiments'"""
-    results_output_path:        Path             = ROOT_DIR / 'experiments'
+    results_output_path:        Path             = ROOT_DIR 
 
     """Experiment operation type. Unless you manually want to initiate each run, use `OperationType.AUTO`."""
     operation_type:             OperationType   = OperationType.AUTO
@@ -58,12 +58,16 @@ class RunnerConfig:
     def create_run_table_model(self) -> RunTableModel:
         """Create and return the run_table model here. A run_table is a List (rows) of tuples (columns),
         representing each run performed"""
-        sampling_factor = FactorModel("sampling", [10, 50, 100, 200, 500, 1000])
+        sampling_factor = FactorModel("sampling", [200])
+        llm = FactorModel("llm", ['chatgpt_temp_0.0', 'gpt-4_temp_0.0'])
+        code = FactorModel("code", ['4'])#, '61', '79', '63', '90', '53', '66', '52', '16'])
         self.run_table_model = RunTableModel(
-            factors = [sampling_factor],
-            data_columns=['dram_energy', 'package_energy',
-                          'pp0_energy', 'pp1_energy']
-
+            factors = [sampling_factor, llm, code],
+            data_columns=['TOTAL_DRAM_ENERGY (J)', 'TOTAL_PACKAGE_ENERGY (J)',
+                          'TOTAL_PP0_ENERGY (J)', 'TOTAL_PP1_ENERGY (J)', 
+                          'TOTAL_MEMORY', 'TOTAL_SWAP',
+                          'AVG_USED_MEMORY', 'AVG_USED_SWAP', 
+                          'TOTAL_ENERGY (J)']
         )
         return self.run_table_model
 
@@ -86,13 +90,15 @@ class RunnerConfig:
     def start_measurement(self, context: RunnerContext) -> None:
         """Perform any activity required for starting measurements."""
         sampling_interval = context.run_variation['sampling']
+        llm = context.run_variation['llm']
+        code = context.run_variation['code']
 
         profiler_cmd = f'sudo energibridge \
                         --interval {sampling_interval} \
                         --max-execution 20 \
                         --output {context.run_dir / "energibridge.csv"} \
                         --summary \
-                        python3 ../code/gpt-4_temp_0.0/4.py'
+                        python3 ../code/{llm}/{code}.py'
 
         #time.sleep(1) # allow the process to run a little before measuring
         energibridge_log = open(f'{context.run_dir}/energibridge.log', 'w')
@@ -121,12 +127,22 @@ class RunnerConfig:
         Returns a dictionary with keys `self.run_table_model.data_columns` and their values populated"""
 
         # energibridge.csv - Power consumption of the whole system
-        df = pd.read_csv(context.run_dir / f"energibridge.csv")
+        df = pd.read_csv(context.run_dir / "energibridge.csv")
+        with open(context.run_dir / "energibridge.log", 'r') as reader:
+            contents = reader.read()
+        contents = contents.split('joules: ')[1]
+        contents = contents.split(' for ')[0]
+        contents = float(contents)
         run_data = {
-                'dram_energy'   : round(df['DRAM_ENERGY (J)'].sum(), 3),
-                'package_energy': round(df['PACKAGE_ENERGY (J)'].sum(), 3),
-                'pp0_energy'    : round(df['PP0_ENERGY (J)'].sum(), 3),
-                'pp1_energy'    : round(df['PP1_ENERGY (J)'].sum(), 3),
+                'TOTAL_DRAM_ENERGY (J)'       : round(df['DRAM_ENERGY (J)'].sum(), 3),
+                'TOTAL_PACKAGE_ENERGY (J)'    : round(df['PACKAGE_ENERGY (J)'].sum(), 3),
+                'TOTAL_PP0_ENERGY (J)'        : round(df['PP0_ENERGY (J)'].sum(), 3),
+                'TOTAL_PP1_ENERGY (J)'        : round(df['PP1_ENERGY (J)'].sum(), 3),
+                'TOTAL_MEMORY'                : round(df['TOTAL_MEMORY'], 3),
+                'TOTAL_SWAP'                  : round(df['TOTAL_SWAP'], 3),
+                'AVG_USED_MEMORY'             : round(df['USED_MEMORY'].mean(), 3),
+                'AVG_USED_SWAP'               : round(df['USED_SWAP'].mean(), 3),
+                'TOTAL_ENERGY (J)'            : round(contents, 3),
         }
         return run_data
 
