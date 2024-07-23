@@ -2398,7 +2398,29 @@ Name: TOTAL_MEMORY, Length: 1501, dtype: int64","0       8589930496
 1499    8589930496
 1500    8589930496
 Name: TOTAL_SWAP, Length: 1501, dtype: int64",1849582948.797,0.0,16156.323
-run_3_repetition_6,TODO,200,code-millenials-34b_temp_0.0,63, , , , , , , , , 
+run_3_repetition_6,DONE,200,code-millenials-34b_temp_0.0,63,0,236789576.628,44544346.643,0,"0       67221331968
+1       67221331968
+2       67221331968
+3       67221331968
+4       67221331968
+           ...     
+1496    67221331968
+1497    67221331968
+1498    67221331968
+1499    67221331968
+1500    67221331968
+Name: TOTAL_MEMORY, Length: 1501, dtype: int64","0       8589930496
+1       8589930496
+2       8589930496
+3       8589930496
+4       8589930496
+           ...    
+1496    8589930496
+1497    8589930496
+1498    8589930496
+1499    8589930496
+1500    8589930496
+Name: TOTAL_SWAP, Length: 1501, dtype: int64",1852189601.173,0.0,16511.832
 run_4_repetition_6,TODO,200,code-millenials-34b_temp_0.0,90, , , , , , , , , 
 run_5_repetition_6,TODO,200,code-millenials-34b_temp_0.0,53, , , , , , , , , 
 run_6_repetition_6,TODO,200,code-millenials-34b_temp_0.0,66, , , , , , , , , 
