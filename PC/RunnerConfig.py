@@ -34,7 +34,7 @@ class RunnerConfig:
 
     """The time Experiment Runner will wait after a run completes.
     This can be essential to accommodate for cooldown periods on some systems."""
-    time_between_runs_in_ms:    int             = 1000 #60000
+    time_between_runs_in_ms:    int             = 60000
 
     execution_time: int = 10 #300
 
@@ -63,7 +63,7 @@ class RunnerConfig:
         representing each run performed"""
         sampling_factor = FactorModel("sampling", [200])
         llm = FactorModel("llm", ['chatgpt_temp_0.0', 'gpt-4_temp_0.0'])
-        code = FactorModel("code", ['4'])#, '61', '79', '63', '90', '53', '66', '52', '16'])
+        code = FactorModel("code", ['4', '61', '79', '63', '90', '53', '66', '52', '16'])
         self.run_table_model = RunTableModel(
             factors = [sampling_factor, llm, code],
             data_columns=['TOTAL_DRAM_ENERGY (J)', 'TOTAL_PACKAGE_ENERGY (J)',
@@ -71,7 +71,7 @@ class RunnerConfig:
                           'TOTAL_MEMORY', 'TOTAL_SWAP',
                           'AVG_USED_MEMORY', 'AVG_USED_SWAP', 
                           'TOTAL_ENERGY (J)'],
-            #repetitions=20
+            repetitions=20
         )
         return self.run_table_model
 
@@ -102,7 +102,6 @@ class RunnerConfig:
 
         profiler_cmd = f'sudo energibridge \
                         --interval {sampling_interval} \
-                        --max-execution {self.execution_time} \
                         --output {context.run_dir / "energibridge.csv"} \
                         --summary \
                         python3 ../code/{llm}/{code}.py'
