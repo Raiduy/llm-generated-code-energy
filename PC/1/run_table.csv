@@ -2,7 +2,7 @@ __run_id,__done,sampling,llm,code,Time,TOTAL_DRAM_ENERGY (J),TOTAL_PACKAGE_ENERG
 run_0_repetition_0,DONE,200,chatgpt_temp_0.0,4,182.091,0,10503420.351,4930564.788,0,67221331968.0,8589930496.0,1739486958.035,0.0,8876.826
 run_1_repetition_0,DONE,200,chatgpt_temp_0.0,61,104.251,0,9857930.784,5989728.786,0,67221331968.0,8589930496.0,1717594249.055,0.0,5078.503
 run_2_repetition_0,DONE,200,chatgpt_temp_0.0,79,211.301,0,27804582.345,18519984.415,0,67221331968.0,8589930496.0,1717640728.197,0.0,9086.66
-run_3_repetition_0,TODO,200,chatgpt_temp_0.0,63, , , , , , , , , , 
+run_3_repetition_0,DONE,200,chatgpt_temp_0.0,63,132.658,0,22915634.241,16102752.759,0,67221331968.0,8589930496.0,1715088397.859,0.0,6554.365
 run_4_repetition_0,TODO,200,chatgpt_temp_0.0,90, , , , , , , , , , 
 run_5_repetition_0,TODO,200,chatgpt_temp_0.0,53, , , , , , , , , , 
 run_6_repetition_0,TODO,200,chatgpt_temp_0.0,66, , , , , , , , , , 
