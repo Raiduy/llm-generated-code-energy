@@ -22,7 +22,7 @@ class RunnerConfig:
 
     # ================================ USER SPECIFIC CONFIG ================================
     """The name of the experiment."""
-    name:                       str             = "1"
+    name:                       str             = "test"
 
     """The path in which Experiment Runner will create a folder with the name `self.name`, in order to store the
     results from this experiment. (Path does not need to exist - it will be created if necessary.)
@@ -34,7 +34,7 @@ class RunnerConfig:
 
     """The time Experiment Runner will wait after a run completes.
     This can be essential to accommodate for cooldown periods on some systems."""
-    time_between_runs_in_ms:    int             = 60000
+    time_between_runs_in_ms:    int             = 100 #60000
 
 
     # Dynamic configurations can be one-time satisfied here before the program takes the config as-is
@@ -61,7 +61,7 @@ class RunnerConfig:
         representing each run performed"""
         sampling_factor = FactorModel("sampling", [200])
         llm = FactorModel("llm", ['chatgpt_temp_0.0', 'gpt-4_temp_0.0'])
-        code = FactorModel("code", ['4', '61', '79', '63', '90', '53', '66', '52', '16'])
+        code = FactorModel("code", ['4'])#, '61', '79', '63', '90', '53', '66', '52', '16'])
         self.run_table_model = RunTableModel(
             factors = [sampling_factor, llm, code],
             data_columns=['TOTAL_DRAM_ENERGY (J)', 'TOTAL_PACKAGE_ENERGY (J)',
