@@ -1,6 +1,6 @@
 __run_id,__done,sampling,llm,code,Time,TOTAL_DRAM_ENERGY (J),TOTAL_PACKAGE_ENERGY (J),TOTAL_PP0_ENERGY (J),TOTAL_PP1_ENERGY (J),TOTAL_MEMORY,TOTAL_SWAP,AVG_USED_MEMORY,AVG_USED_SWAP,TOTAL_ENERGY (J)
 run_0_repetition_0,DONE,200,speechless-codellama-34b_temp_0.0,4,147.275,0,9631181.505,3814593.706,0,67221336064.0,8589930496.0,1758490807.154,0.0,8190.487
-run_1_repetition_0,TODO,200,speechless-codellama-34b_temp_0.0,61, , , , , , , , , , 
+run_1_repetition_0,DONE,200,speechless-codellama-34b_temp_0.0,61,134.264,0,14068831.376,7696591.854,0,67221336064.0,8589930496.0,1742557445.706,0.0,6683.65
 run_2_repetition_0,TODO,200,speechless-codellama-34b_temp_0.0,79, , , , , , , , , , 
 run_3_repetition_0,TODO,200,speechless-codellama-34b_temp_0.0,63, , , , , , , , , , 
 run_4_repetition_0,TODO,200,speechless-codellama-34b_temp_0.0,90, , , , , , , , , , 
