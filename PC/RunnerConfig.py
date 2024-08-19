@@ -36,6 +36,7 @@ class RunnerConfig:
     This can be essential to accommodate for cooldown periods on some systems."""
     time_between_runs_in_ms:    int             = 60000
 
+
     # Dynamic configurations can be one-time satisfied here before the program takes the config as-is
     # e.g. Setting some variable based on some criteria
     def __init__(self):
@@ -85,6 +86,7 @@ class RunnerConfig:
         subprocess.call('git add --all && git commit -m "Experiment checkpoint" && git push',
                         shell=True, stdout=git_log, stderr=git_log)
 
+
     def start_run(self, context: RunnerContext) -> None:
         """Perform any activity required for starting the run here.
         For example, starting the target system to measure.
@@ -99,10 +101,9 @@ class RunnerConfig:
 
         profiler_cmd = f'sudo energibridge \
                         --interval {sampling_interval} \
-                        --max-execution 300 \
                         --output {context.run_dir / "energibridge.csv"} \
                         --summary \
-                        python3 ../code/{llm}/{code}.py'
+                        python3 ./code/{llm}/{code}.py'
 
         #time.sleep(1) # allow the process to run a little before measuring
         energibridge_log = open(f'{context.run_dir}/energibridge.log', 'w')
@@ -113,8 +114,7 @@ class RunnerConfig:
 
         # No interaction. We just run it for XX seconds.
         # Another example would be to wait for the target to finish, e.g. via `self.target.wait()`
-        output.console_log("Running program for 5 minutes")
-        time.sleep(300)
+        pass
 
     def stop_measurement(self, context: RunnerContext) -> None:
         """Perform any activity here required for stopping measurements."""
@@ -136,17 +136,17 @@ class RunnerConfig:
             contents = reader.read()
         contents = contents.split('joules: ')[1]
         contents = contents.split(' for ')[0]
-        contents = float(contents)
+        total_energy = float(contents)
         run_data = {
                 'TOTAL_DRAM_ENERGY (J)'       : round(df['DRAM_ENERGY (J)'].sum(), 3),
                 'TOTAL_PACKAGE_ENERGY (J)'    : round(df['PACKAGE_ENERGY (J)'].sum(), 3),
                 'TOTAL_PP0_ENERGY (J)'        : round(df['PP0_ENERGY (J)'].sum(), 3),
                 'TOTAL_PP1_ENERGY (J)'        : round(df['PP1_ENERGY (J)'].sum(), 3),
-                'TOTAL_MEMORY'                : round(df['TOTAL_MEMORY'], 3),
-                'TOTAL_SWAP'                  : round(df['TOTAL_SWAP'], 3),
+                'TOTAL_MEMORY'                : round(df['TOTAL_MEMORY'].mean() if df['TOTAL_MEMORY'].std() == 0 else -1, 3),
+                'TOTAL_SWAP'                  : round(df['TOTAL_SWAP'].mean() if df['TOTAL_SWAP'].std() == 0 else -1, 3),
                 'AVG_USED_MEMORY'             : round(df['USED_MEMORY'].mean(), 3),
                 'AVG_USED_SWAP'               : round(df['USED_SWAP'].mean(), 3),
-                'TOTAL_ENERGY (J)'            : round(contents, 3),
+                'TOTAL_ENERGY (J)'            : round(total_energy, 3),
         }
         return run_data
 
