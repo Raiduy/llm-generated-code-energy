@@ -22,7 +22,7 @@ class RunnerConfig:
 
     # ================================ USER SPECIFIC CONFIG ================================
     """The name of the experiment."""
-    name:                       str             = "1"
+    name:                       str             = "test"
 
     """The path in which Experiment Runner will create a folder with the name `self.name`, in order to store the
     results from this experiment. (Path does not need to exist - it will be created if necessary.)
@@ -34,7 +34,10 @@ class RunnerConfig:
 
     """The time Experiment Runner will wait after a run completes.
     This can be essential to accommodate for cooldown periods on some systems."""
-    time_between_runs_in_ms:    int             = 60000
+    time_between_runs_in_ms:    int             = 1000 #60000
+
+    execution_time: int = 10 #300
+
 
     # Dynamic configurations can be one-time satisfied here before the program takes the config as-is
     # e.g. Setting some variable based on some criteria
@@ -60,14 +63,15 @@ class RunnerConfig:
         representing each run performed"""
         sampling_factor = FactorModel("sampling", [200])
         llm = FactorModel("llm", ['chatgpt_temp_0.0', 'gpt-4_temp_0.0'])
-        code = FactorModel("code", ['4', '61', '79', '63', '90', '53', '66', '52', '16'])
+        code = FactorModel("code", ['4'])#, '61', '79', '63', '90', '53', '66', '52', '16'])
         self.run_table_model = RunTableModel(
             factors = [sampling_factor, llm, code],
             data_columns=['TOTAL_DRAM_ENERGY (J)', 'TOTAL_PACKAGE_ENERGY (J)',
                           'TOTAL_PP0_ENERGY (J)', 'TOTAL_PP1_ENERGY (J)', 
                           'TOTAL_MEMORY', 'TOTAL_SWAP',
                           'AVG_USED_MEMORY', 'AVG_USED_SWAP', 
-                          'TOTAL_ENERGY (J)']
+                          'TOTAL_ENERGY (J)'],
+            #repetitions=20
         )
         return self.run_table_model
 
@@ -80,10 +84,9 @@ class RunnerConfig:
         """Perform any activity required before starting a run.
         No context is available here as the run is not yet active (BEFORE RUN)"""
         
-        git_cmd = 'git add . && git commit -m "Experiment checkpoint" && git push'
-        
-        git_log = open('./git_log.log', 'a')
-        self.profiler = subprocess.Popen(shlex.split(git_cmd), stdout=git_log)
+        #git_log = open(f'./{self.name}/git_log.log', 'a')
+        #subprocess.call('git add --all && git commit -m "Experiment checkpoint" && git push',
+        #                shell=True, stdout=git_log, stderr=git_log)
 
     def start_run(self, context: RunnerContext) -> None:
         """Perform any activity required for starting the run here.
@@ -99,7 +102,7 @@ class RunnerConfig:
 
         profiler_cmd = f'sudo energibridge \
                         --interval {sampling_interval} \
-                        --max-execution 300 \
+                        --max-execution {self.execution_time} \
                         --output {context.run_dir / "energibridge.csv"} \
                         --summary \
                         python3 ../code/{llm}/{code}.py'
@@ -113,8 +116,8 @@ class RunnerConfig:
 
         # No interaction. We just run it for XX seconds.
         # Another example would be to wait for the target to finish, e.g. via `self.target.wait()`
-        output.console_log("Running program for 5 minutes")
-        time.sleep(300)
+        output.console_log(f"Running program for {self.execution_time} seconds.")
+        time.sleep(self.execution_time)
 
     def stop_measurement(self, context: RunnerContext) -> None:
         """Perform any activity here required for stopping measurements."""
@@ -136,17 +139,17 @@ class RunnerConfig:
             contents = reader.read()
         contents = contents.split('joules: ')[1]
         contents = contents.split(' for ')[0]
-        contents = float(contents)
+        total_energy = float(contents)
         run_data = {
                 'TOTAL_DRAM_ENERGY (J)'       : round(df['DRAM_ENERGY (J)'].sum(), 3),
                 'TOTAL_PACKAGE_ENERGY (J)'    : round(df['PACKAGE_ENERGY (J)'].sum(), 3),
                 'TOTAL_PP0_ENERGY (J)'        : round(df['PP0_ENERGY (J)'].sum(), 3),
                 'TOTAL_PP1_ENERGY (J)'        : round(df['PP1_ENERGY (J)'].sum(), 3),
-                'TOTAL_MEMORY'                : round(df['TOTAL_MEMORY'], 3),
-                'TOTAL_SWAP'                  : round(df['TOTAL_SWAP'], 3),
+                'TOTAL_MEMORY'                : round(df['TOTAL_MEMORY'].mean() if df['TOTAL_MEMORY'].std() == 0 else -1, 3),
+                'TOTAL_SWAP'                  : round(df['TOTAL_SWAP'].mean() if df['TOTAL_SWAP'].std() == 0 else -1, 3),
                 'AVG_USED_MEMORY'             : round(df['USED_MEMORY'].mean(), 3),
                 'AVG_USED_SWAP'               : round(df['USED_SWAP'].mean(), 3),
-                'TOTAL_ENERGY (J)'            : round(contents, 3),
+                'TOTAL_ENERGY (J)'            : round(total_energy, 3),
         }
         return run_data
 
