@@ -2,7 +2,7 @@ __run_id,__done,sampling,llm,code,Time,TOTAL_DRAM_ENERGY (J),TOTAL_PACKAGE_ENERG
 run_0_repetition_0,DONE,200,speechless-codellama-34b_temp_0.0,4,147.275,0,9631181.505,3814593.706,0,67221336064.0,8589930496.0,1758490807.154,0.0,8190.487
 run_1_repetition_0,DONE,200,speechless-codellama-34b_temp_0.0,61,134.264,0,14068831.376,7696591.854,0,67221336064.0,8589930496.0,1742557445.706,0.0,6683.65
 run_2_repetition_0,DONE,200,speechless-codellama-34b_temp_0.0,79,178.085,0,26397889.1,16417647.991,0,67221336064.0,8589930496.0,1737460051.803,0.0,9859.117
-run_3_repetition_0,TODO,200,speechless-codellama-34b_temp_0.0,63, , , , , , , , , , 
+run_3_repetition_0,DONE,200,speechless-codellama-34b_temp_0.0,63,78.239,0,14589614.597,9609814.817,0,67221336064.0,8589930496.0,1738196163.42,0.0,4361.894
 run_4_repetition_0,TODO,200,speechless-codellama-34b_temp_0.0,90, , , , , , , , , , 
 run_5_repetition_0,TODO,200,speechless-codellama-34b_temp_0.0,53, , , , , , , , , , 
 run_6_repetition_0,TODO,200,speechless-codellama-34b_temp_0.0,66, , , , , , , , , , 
