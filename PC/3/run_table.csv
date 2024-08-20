@@ -254,7 +254,7 @@ run_17_repetition_13,DONE,200,wizardcoder-33b-1.1_temp_0.0,16,173.689,0,18323688
 run_0_repetition_14,DONE,200,speechless-codellama-34b_temp_0.0,4,146.473,0,161384815.471,177040829.454,0,67221336064.0,8589930496.0,1348526007.455,461733888.0,8242.824
 run_1_repetition_14,DONE,200,speechless-codellama-34b_temp_0.0,61,111.257,0,126961949.555,138026908.927,0,67221336064.0,8589930496.0,1343413971.039,461733888.0,6198.628
 run_2_repetition_14,DONE,200,speechless-codellama-34b_temp_0.0,79,177.089,0,209300426.134,225453496.508,0,67221336064.0,8589930496.0,1344785199.044,461733888.0,9835.47
-run_3_repetition_14,TODO,200,speechless-codellama-34b_temp_0.0,63, , , , , , , , , , 
+run_3_repetition_14,DONE,200,speechless-codellama-34b_temp_0.0,63,77.037,0,94218534.896,100695334.038,0,67221336064.0,8589930496.0,1346848720.372,461733888.0,4303.364
 run_4_repetition_14,TODO,200,speechless-codellama-34b_temp_0.0,90, , , , , , , , , , 
 run_5_repetition_14,TODO,200,speechless-codellama-34b_temp_0.0,53, , , , , , , , , , 
 run_6_repetition_14,TODO,200,speechless-codellama-34b_temp_0.0,66, , , , , , , , , , 
