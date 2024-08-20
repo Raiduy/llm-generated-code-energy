@@ -310,7 +310,7 @@ run_1_repetition_17,DONE,200,chatgpt_temp_0.0,61,105.65,0,128614714.77,27943502.
 run_2_repetition_17,DONE,200,chatgpt_temp_0.0,79,175.083,0,219110444.435,51423605.172,0,67221331968.0,8589930496.0,1874397737.45,0.0,8474.878
 run_3_repetition_17,DONE,200,chatgpt_temp_0.0,63,133.471,0,172408825.551,43588788.489,0,67221331968.0,8589930496.0,1878242682.069,0.0,6583.118
 run_4_repetition_17,TODO,200,chatgpt_temp_0.0,90, , , , , , , , , , 
-run_5_repetition_17,TODO,200,chatgpt_temp_0.0,53, , , , , , , , , , 
+run_5_repetition_17,DONE,200,chatgpt_temp_0.0,53,234.118,0,13285820.601,91586746.339,0,67221331968.0,8589930496.0,1887464178.894,0.0,10139.854
 run_6_repetition_17,TODO,200,chatgpt_temp_0.0,66, , , , , , , , , , 
 run_7_repetition_17,TODO,200,chatgpt_temp_0.0,52, , , , , , , , , , 
 run_8_repetition_17,TODO,200,chatgpt_temp_0.0,16, , , , , , , , , , 
