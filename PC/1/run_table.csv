@@ -217,7 +217,7 @@ run_16_repetition_11,DONE,200,gpt-4_temp_0.0,52,182.49,0,223228106.076,173490479
 run_17_repetition_11,DONE,200,gpt-4_temp_0.0,16,172.686,0,219145669.048,170768547.894,0,67221331968.0,8589930496.0,1964870742.418,0.0,8191.741
 run_0_repetition_12,TODO,200,chatgpt_temp_0.0,4, , , , , , , , , , 
 run_1_repetition_12,DONE,200,chatgpt_temp_0.0,61,104.853,0,3949784.209,110955593.822,0,67221331968.0,8589930496.0,1878674342.449,0.0,5132.004
-run_2_repetition_12,TODO,200,chatgpt_temp_0.0,79, , , , , , , , , , 
+run_2_repetition_12,DONE,200,chatgpt_temp_0.0,79,179.085,0,13238767.612,194575748.912,0,67221331968.0,8589930496.0,1879581535.037,0.0,8676.854
 run_3_repetition_12,TODO,200,chatgpt_temp_0.0,63, , , , , , , , , , 
 run_4_repetition_12,TODO,200,chatgpt_temp_0.0,90, , , , , , , , , , 
 run_5_repetition_12,TODO,200,chatgpt_temp_0.0,53, , , , , , , , , , 
