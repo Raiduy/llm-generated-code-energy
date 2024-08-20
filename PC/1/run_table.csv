@@ -92,7 +92,7 @@ run_17_repetition_4,DONE,200,gpt-4_temp_0.0,16,172.484,0,204490266.999,87549568.
 run_0_repetition_5,DONE,200,chatgpt_temp_0.0,4,183.088,0,225214820.331,99711760.987,0,67221331968.0,8589930496.0,1761366699.411,0.0,8954.717
 run_1_repetition_5,DONE,200,chatgpt_temp_0.0,61,107.252,0,136144907.435,61816810.934,0,67221331968.0,8589930496.0,1754815392.833,0.0,5259.593
 run_2_repetition_5,TODO,200,chatgpt_temp_0.0,79, , , , , , , , , , 
-run_3_repetition_5,TODO,200,chatgpt_temp_0.0,63, , , , , , , , , , 
+run_3_repetition_5,DONE,200,chatgpt_temp_0.0,63,132.267,0,3930202.271,84400238.846,0,67221331968.0,8589930496.0,1756153556.368,0.0,6542.346
 run_4_repetition_5,TODO,200,chatgpt_temp_0.0,90, , , , , , , , , , 
 run_5_repetition_5,TODO,200,chatgpt_temp_0.0,53, , , , , , , , , , 
 run_6_repetition_5,TODO,200,chatgpt_temp_0.0,66, , , , , , , , , , 
