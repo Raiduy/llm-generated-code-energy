@@ -75,7 +75,7 @@ run_0_repetition_4,DONE,200,code-millenials-34b_temp_0.0,4,200.896,0,204678624.2
 run_1_repetition_4,DONE,200,code-millenials-34b_temp_0.0,61,110.656,0,117749320.147,50360007.952,0,67221331968.0,8589930496.0,1388966736.721,359804928.0,5974.828
 run_2_repetition_4,DONE,200,code-millenials-34b_temp_0.0,79,185.891,0,205286264.404,91009560.909,0,67221331968.0,8589930496.0,1378165937.083,359804928.0,9982.426
 run_3_repetition_4,DONE,200,code-millenials-34b_temp_0.0,63,130.666,0,150308423.153,68997785.197,0,67221331968.0,8589930496.0,1375126460.776,359804928.0,7271.487
-run_4_repetition_4,TODO,200,code-millenials-34b_temp_0.0,90, , , , , , , , , , 
+run_4_repetition_4,DONE,200,code-millenials-34b_temp_0.0,90,147.479,0,175646852.137,82972905.474,0,67221331968.0,8589930496.0,1408072697.072,359280640.0,8372.301
 run_5_repetition_4,TODO,200,code-millenials-34b_temp_0.0,53, , , , , , , , , , 
 run_6_repetition_4,TODO,200,code-millenials-34b_temp_0.0,66, , , , , , , , , , 
 run_7_repetition_4,TODO,200,code-millenials-34b_temp_0.0,52, , , , , , , , , , 
