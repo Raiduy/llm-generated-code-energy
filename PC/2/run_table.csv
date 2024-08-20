@@ -240,7 +240,7 @@ run_3_repetition_13,DONE,200,code-millenials-34b_temp_0.0,63,156.879,0,9018148.4
 run_4_repetition_13,DONE,200,code-millenials-34b_temp_0.0,90,176.689,0,17767925.406,142857110.42,0,67221331968.0,8589930496.0,1362075041.699,467193856.0,8846.661
 run_5_repetition_13,DONE,200,code-millenials-34b_temp_0.0,53,185.288,0,27706822.752,157447956.206,0,67221331968.0,8589930496.0,1362043453.793,467193856.0,9992.766
 run_6_repetition_13,DONE,200,code-millenials-34b_temp_0.0,66,177.488,0,35786318.188,158700446.602,0,67221331968.0,8589930496.0,1359350066.394,467193856.0,10100.111
-run_7_repetition_13,TODO,200,code-millenials-34b_temp_0.0,52, , , , , , , , , , 
+run_7_repetition_13,DONE,200,code-millenials-34b_temp_0.0,52,184.285,0,47003524.949,173198076.734,0,67221331968.0,8589930496.0,1357694849.525,467193856.0,10525.663
 run_8_repetition_13,TODO,200,code-millenials-34b_temp_0.0,16, , , , , , , , , , 
 run_9_repetition_13,TODO,200,deepseek-coder-33b-instruct_temp_0.0,4, , , , , , , , , , 
 run_10_repetition_13,TODO,200,deepseek-coder-33b-instruct_temp_0.0,61, , , , , , , , , , 
