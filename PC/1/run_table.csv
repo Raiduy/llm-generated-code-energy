@@ -61,7 +61,7 @@ run_4_repetition_3,DONE,200,chatgpt_temp_0.0,90,136.466,0,160181351.772,98706067
 run_5_repetition_3,DONE,200,chatgpt_temp_0.0,53,185.891,0,225695961.584,140715906.445,0,67221331968.0,8589930496.0,1737306248.387,0.0,9043.533
 run_6_repetition_3,DONE,200,chatgpt_temp_0.0,66,183.286,0,231247081.63,146022418.456,0,67221331968.0,8589930496.0,1742746068.497,0.0,9241.705
 run_7_repetition_3,TODO,200,chatgpt_temp_0.0,52, , , , , , , , , , 
-run_8_repetition_3,TODO,200,chatgpt_temp_0.0,16, , , , , , , , , , 
+run_8_repetition_3,DONE,200,chatgpt_temp_0.0,16,173.479,0,8120748.661,152358002.793,0,67221331968.0,8589930496.0,1827237506.209,0.0,8200.0
 run_9_repetition_3,TODO,200,gpt-4_temp_0.0,4, , , , , , , , , , 
 run_10_repetition_3,TODO,200,gpt-4_temp_0.0,61, , , , , , , , , , 
 run_11_repetition_3,TODO,200,gpt-4_temp_0.0,79, , , , , , , , , , 
