@@ -262,7 +262,7 @@ run_7_repetition_14,DONE,200,code-millenials-34b_temp_0.0,52,185.093,0,212893012
 run_8_repetition_14,DONE,200,code-millenials-34b_temp_0.0,16,173.886,0,208952932.587,73692983.137,0,67221331968.0,8589930496.0,1450952753.378,462741504.0,9240.862
 run_9_repetition_14,DONE,200,deepseek-coder-33b-instruct_temp_0.0,4,182.493,0,228384463.788,85057569.028,0,67221331968.0,8589930496.0,1372773113.838,462741504.0,9997.282
 run_10_repetition_14,TODO,200,deepseek-coder-33b-instruct_temp_0.0,61, , , , , , , , , , 
-run_11_repetition_14,TODO,200,deepseek-coder-33b-instruct_temp_0.0,79, , , , , , , , , , 
+run_11_repetition_14,DONE,200,deepseek-coder-33b-instruct_temp_0.0,79,179.889,0,9421755.265,101291513.965,0,67221331968.0,8589930496.0,1381037954.983,462741504.0,9693.613
 run_12_repetition_14,TODO,200,deepseek-coder-33b-instruct_temp_0.0,63, , , , , , , , , , 
 run_13_repetition_14,TODO,200,deepseek-coder-33b-instruct_temp_0.0,90, , , , , , , , , , 
 run_14_repetition_14,TODO,200,deepseek-coder-33b-instruct_temp_0.0,53, , , , , , , , , , 
