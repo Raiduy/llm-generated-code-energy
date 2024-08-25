@@ -35,7 +35,7 @@ class RunnerConfig:
 
     """The time Experiment Runner will wait after a run completes.
     This can be essential to accommodate for cooldown periods on some systems."""
-    time_between_runs_in_ms:    int             = 1000 #60000
+    time_between_runs_in_ms:    int             = 60000
 
     csv_tracker = {}
 
@@ -63,7 +63,7 @@ class RunnerConfig:
         """Create and return the run_table model here. A run_table is a List (rows) of tuples (columns),
         representing each run performed"""
         llm = FactorModel("llm", ['chatgpt_temp_0.0', 'gpt-4_temp_0.0', 'deepseek-coder-33b-instruct_temp_0.0'])
-        code = FactorModel("code", ['4'])#, '61', '79', '63', '90', '53', '66', '52', '16'])
+        code = FactorModel("code", ['4', '61', '79', '63', '90', '53', '66', '52', '16'])
         self.run_table_model = RunTableModel(
             factors = [llm, code],
             repetitions=21,
