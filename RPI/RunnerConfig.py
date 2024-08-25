@@ -116,7 +116,6 @@ class RunnerConfig:
             self.csv_tracker[csv_filename] = 0
         csv_filename = f'{csv_filename}__{self.csv_tracker[csv_filename]}'
 
-        #time.sleep(1) # allow the process to run a little before measuring
         res = requests.post(f'http://{SERVER_HOST}/start/{csv_filename}', json={}, headers={'Content-Type': 'application/json'})
         output.console_log(res.text)
 
@@ -125,6 +124,8 @@ class RunnerConfig:
         )
 
         output.console_log("Config.start_measurement() called!")
+        time.sleep(1) # allow the process to run a little before measuring
+
 
     def interact(self, context: RunnerContext) -> None:
         """Perform any interaction with the running target system here, or block here until the target finishes."""
