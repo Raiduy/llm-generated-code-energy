@@ -15,7 +15,7 @@ import requests
 import subprocess
 import shlex
 
-SERVER_HOST = '192.168.0.80:5000'
+SERVER_HOST = '192.168.0.103:5000'
 
 class RunnerConfig:
     ROOT_DIR = Path(dirname(realpath(__file__)))
