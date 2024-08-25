@@ -14,8 +14,9 @@ import os
 import requests
 import subprocess
 import shlex
+import time
 
-SERVER_HOST = '192.168.0.80:5000'
+SERVER_HOST = '192.168.0.15:5000'
 
 class RunnerConfig:
     ROOT_DIR = Path(dirname(realpath(__file__)))
@@ -61,16 +62,10 @@ class RunnerConfig:
     def create_run_table_model(self) -> RunTableModel:
         """Create and return the run_table model here. A run_table is a List (rows) of tuples (columns),
         representing each run performed"""
-        sampling_factor = FactorModel("sampling", [200])
         llm = FactorModel("llm", ['code-millenials-34b_temp_0.0', 'speechless-codellama-34b_temp_0.0', 'wizardcoder-33b-1.1_temp_0.0'])
         code = FactorModel("code", ['4', '61', '79', '63', '90', '53', '66', '52', '16'])
         self.run_table_model = RunTableModel(
-            factors = [sampling_factor, llm, code],
-            data_columns=['Time', 'TOTAL_DRAM_ENERGY (J)', 'TOTAL_PACKAGE_ENERGY (J)',
-                          'TOTAL_PP0_ENERGY (J)', 'TOTAL_PP1_ENERGY (J)', 
-                          'TOTAL_MEMORY', 'TOTAL_SWAP',
-                          'AVG_USED_MEMORY', 'AVG_USED_SWAP', 
-                          'TOTAL_ENERGY (J)'],
+            factors = [llm, code],
             repetitions=21,
         )
         return self.run_table_model
@@ -87,7 +82,7 @@ class RunnerConfig:
 
         output.console_log("Config.before_run() called!")
 
-        git_log = open(f'./{self.name}/git_log.log', 'a')
+        git_log = open(f'./experiments/{self.name}/git_log.log', 'a')
         subprocess.call('git add --all && git commit -m "Experiment checkpoint" && git push',
                         shell=True, stdout=git_log, stderr=git_log)
 
@@ -98,14 +93,13 @@ class RunnerConfig:
 
         output.console_log("Config.start_run() called!")
         
-        sampling_interval = context.run_variation['sampling']
         llm = context.run_variation['llm']
         code = context.run_variation['code']
 
         profiler_cmd = f'python3 ./code/{llm}/{code}.py'
 
         #time.sleep(1) # allow the process to run a little before measuring
-        self.profiler = subprocess.Popen(shlex.split(profiler_cmd))
+        self.target = subprocess.Popen(shlex.split(profiler_cmd))
 
     def start_measurement(self, context: RunnerContext) -> None:
         """Perform any activity required for starting measurements."""
@@ -114,31 +108,36 @@ class RunnerConfig:
         llm = context.run_variation['llm']
         code = context.run_variation['code']
 
-        csv_filename = f'{llm}_{code}'
+        csv_filename = f'{llm}__{code}'
 
         if csv_filename in self.csv_tracker:
             self.csv_tracker[csv_filename] += 1
         else:
             self.csv_tracker[csv_filename] = 0
-        csv_filename = f'{csv_filename}_{self.csv_tracker[csv_filename]}'
+        csv_filename = f'{csv_filename}__{self.csv_tracker[csv_filename]}'
 
         #time.sleep(1) # allow the process to run a little before measuring
-        res = requests.post(f'http://{SERVER_HOST}:5000/start/{csv_filename}', json={}, headers={'Content-Type': 'application/json'})
+        res = requests.post(f'http://{SERVER_HOST}/start/{csv_filename}', json={}, headers={'Content-Type': 'application/json'})
         output.console_log(res.text)
+
+        self.profiler = subprocess.Popen(['sar', '-A', '-o', context.run_dir / "sar_log.file", '1', '800'],
+                stdout=subprocess.PIPE, stderr=subprocess.PIPE, cwd=self.ROOT_DIR,
+        )
 
         output.console_log("Config.start_measurement() called!")
 
     def interact(self, context: RunnerContext) -> None:
         """Perform any interaction with the running target system here, or block here until the target finishes."""
-        pass
+        self.target.wait()
+
 
     def stop_measurement(self, context: RunnerContext) -> None:
         """Perform any activity here required for stopping measurements."""
         output.console_log("Stopping measurement on the dev computer...")
 
-        self.profiler.wait()
+        self.profiler.kill()
 
-        res = requests.post(f'http://{SERVER_HOST}:5000/stop', json={}, headers={'Content-Type': 'application/json'})
+        res = requests.post(f'http://{SERVER_HOST}/stop', json={}, headers={'Content-Type': 'application/json'})
         output.console_log(res.text)
 
         output.console_log("Config.stop_measurement called!")
