@@ -22,7 +22,7 @@ class RunnerConfig:
 
     # ================================ USER SPECIFIC CONFIG ================================
     """The name of the experiment."""
-    name:                       str             = "2"
+    name:                       str             = "test"
 
     """The path in which Experiment Runner will create a folder with the name `self.name`, in order to store the
     results from this experiment. (Path does not need to exist - it will be created if necessary.)
@@ -34,7 +34,7 @@ class RunnerConfig:
 
     """The time Experiment Runner will wait after a run completes.
     This can be essential to accommodate for cooldown periods on some systems."""
-    time_between_runs_in_ms:    int             = 60000
+    time_between_runs_in_ms:    int             = 1000 #60000
 
     csv_tracker = {}
 
@@ -61,16 +61,10 @@ class RunnerConfig:
     def create_run_table_model(self) -> RunTableModel:
         """Create and return the run_table model here. A run_table is a List (rows) of tuples (columns),
         representing each run performed"""
-        sampling_factor = FactorModel("sampling", [200])
-        llm = FactorModel("llm", ['code-millenials-34b_temp_0.0', 'speechless-codellama-34b_temp_0.0', 'wizardcoder-33b-1.1_temp_0.0'])
-        code = FactorModel("code", ['4', '61', '79', '63', '90', '53', '66', '52', '16'])
+        llm = FactorModel("llm", ['chatgpt_temp_0.0', 'gpt-4_temp_0.0', 'deepseek-coder-33b-instruct_temp_0.0'])
+        code = FactorModel("code", ['4'])#, '61', '79', '63', '90', '53', '66', '52', '16'])
         self.run_table_model = RunTableModel(
-            factors = [sampling_factor, llm, code],
-            data_columns=['Time', 'TOTAL_DRAM_ENERGY (J)', 'TOTAL_PACKAGE_ENERGY (J)',
-                          'TOTAL_PP0_ENERGY (J)', 'TOTAL_PP1_ENERGY (J)', 
-                          'TOTAL_MEMORY', 'TOTAL_SWAP',
-                          'AVG_USED_MEMORY', 'AVG_USED_SWAP', 
-                          'TOTAL_ENERGY (J)'],
+            factors = [llm, code],
             repetitions=21,
         )
         return self.run_table_model
@@ -98,7 +92,6 @@ class RunnerConfig:
 
         output.console_log("Config.start_run() called!")
         
-        sampling_interval = context.run_variation['sampling']
         llm = context.run_variation['llm']
         code = context.run_variation['code']
 
@@ -122,11 +115,16 @@ class RunnerConfig:
             self.csv_tracker[csv_filename] = 0
         csv_filename = f'{csv_filename}_{self.csv_tracker[csv_filename]}'
 
-        #time.sleep(1) # allow the process to run a little before measuring
-        res = requests.post(f'http://{SERVER_HOST}:5000/start/{csv_filename}', json={}, headers={'Content-Type': 'application/json'})
+        res = requests.post(f'http://{SERVER_HOST}/start/{csv_filename}', json={}, headers={'Content-Type': 'application/json'})
         output.console_log(res.text)
 
+        self.target = subprocess.Popen(['sar', '-A', '-o', context.run_dir / "sar_log.file", '1', '800'],
+            stdout=subprocess.PIPE, stderr=subprocess.PIPE, cwd=self.ROOT_DIR,
+        )
+
         output.console_log("Config.start_measurement() called!")
+        time.sleep(1) # allow the process to run a little before measuring
+
 
     def interact(self, context: RunnerContext) -> None:
         """Perform any interaction with the running target system here, or block here until the target finishes."""
@@ -138,7 +136,9 @@ class RunnerConfig:
 
         self.profiler.wait()
 
-        res = requests.post(f'http://{SERVER_HOST}:5000/stop', json={}, headers={'Content-Type': 'application/json'})
+        self.target.kill()
+
+        res = requests.post(f'http://{SERVER_HOST}/stop', json={}, headers={'Content-Type': 'application/json'})
         output.console_log(res.text)
 
         output.console_log("Config.stop_measurement called!")
