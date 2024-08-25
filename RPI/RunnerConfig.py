@@ -108,13 +108,13 @@ class RunnerConfig:
         llm = context.run_variation['llm']
         code = context.run_variation['code']
 
-        csv_filename = f'{llm}_{code}'
+        csv_filename = f'{llm}__{code}'
 
         if csv_filename in self.csv_tracker:
             self.csv_tracker[csv_filename] += 1
         else:
             self.csv_tracker[csv_filename] = 0
-        csv_filename = f'{csv_filename}_{self.csv_tracker[csv_filename]}'
+        csv_filename = f'{csv_filename}__{self.csv_tracker[csv_filename]}'
 
         res = requests.post(f'http://{SERVER_HOST}/start/{csv_filename}', json={}, headers={'Content-Type': 'application/json'})
         output.console_log(res.text)
