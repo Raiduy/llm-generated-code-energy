@@ -82,7 +82,7 @@ class RunnerConfig:
 
         output.console_log("Config.before_run() called!")
 
-        git_log = open(f'./{self.name}/git_log.log', 'a')
+        git_log = open(f'./experiments/{self.name}/git_log.log', 'a')
         subprocess.call('git add --all && git commit -m "Experiment checkpoint" && git push',
                         shell=True, stdout=git_log, stderr=git_log)
 
