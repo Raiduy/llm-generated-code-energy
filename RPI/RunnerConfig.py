@@ -99,7 +99,7 @@ class RunnerConfig:
         profiler_cmd = f'python3 ./code/{llm}/{code}.py'
 
         #time.sleep(1) # allow the process to run a little before measuring
-        self.profiler = subprocess.Popen(shlex.split(profiler_cmd))
+        self.target = subprocess.Popen(shlex.split(profiler_cmd))
 
     def start_measurement(self, context: RunnerContext) -> None:
         """Perform any activity required for starting measurements."""
@@ -119,7 +119,7 @@ class RunnerConfig:
         res = requests.post(f'http://{SERVER_HOST}/start/{csv_filename}', json={}, headers={'Content-Type': 'application/json'})
         output.console_log(res.text)
 
-        self.target = subprocess.Popen(['sar', '-A', '-o', context.run_dir / "sar_log.file", '1', '800'],
+        self.profiler = subprocess.Popen(['sar', '-A', '-o', context.run_dir / "sar_log.file", '1', '800'],
             stdout=subprocess.PIPE, stderr=subprocess.PIPE, cwd=self.ROOT_DIR,
         )
 
@@ -129,15 +129,15 @@ class RunnerConfig:
 
     def interact(self, context: RunnerContext) -> None:
         """Perform any interaction with the running target system here, or block here until the target finishes."""
-        pass
+        self.target.wait()
+
 
     def stop_measurement(self, context: RunnerContext) -> None:
         """Perform any activity here required for stopping measurements."""
         output.console_log("Stopping measurement on the dev computer...")
 
-        self.profiler.wait()
 
-        self.target.kill()
+        self.profiler.kill()
 
         res = requests.post(f'http://{SERVER_HOST}/stop', json={}, headers={'Content-Type': 'application/json'})
         output.console_log(res.text)
