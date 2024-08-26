@@ -194,7 +194,7 @@ run_2_repetition_7,DONE,chatgpt_temp_0.0,79
 run_3_repetition_7,DONE,chatgpt_temp_0.0,63
 run_4_repetition_7,DONE,chatgpt_temp_0.0,90
 run_5_repetition_7,DONE,chatgpt_temp_0.0,53
-run_6_repetition_7,TODO,chatgpt_temp_0.0,66
+run_6_repetition_7,DONE,chatgpt_temp_0.0,66
 run_7_repetition_7,TODO,chatgpt_temp_0.0,52
 run_8_repetition_7,TODO,chatgpt_temp_0.0,16
 run_9_repetition_7,TODO,gpt-4_temp_0.0,4
