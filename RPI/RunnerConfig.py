@@ -119,6 +119,7 @@ class RunnerConfig:
         output.console_log(f'CODE: {code}')
         output.console_log(f'FILENAME: {csv_file}')
         output.console_log(f'DICT: {self.csv_tracker}')
+        output.console_log(f'RUNDIR: {context.run_dir}')
         res = requests.post(f'http://{SERVER_HOST}/start/{csv_file}', json={}, headers={'Content-Type': 'application/json'})
         output.console_log(res.text)
 
