@@ -73,7 +73,7 @@ run_16_repetition_2,DONE,gpt-4_temp_0.0,52
 run_17_repetition_2,DONE,gpt-4_temp_0.0,16
 run_18_repetition_2,DONE,deepseek-coder-33b-instruct_temp_0.0,4
 run_19_repetition_2,DONE,deepseek-coder-33b-instruct_temp_0.0,61
-run_20_repetition_2,TODO,deepseek-coder-33b-instruct_temp_0.0,79
+run_20_repetition_2,DONE,deepseek-coder-33b-instruct_temp_0.0,79
 run_21_repetition_2,TODO,deepseek-coder-33b-instruct_temp_0.0,63
 run_22_repetition_2,TODO,deepseek-coder-33b-instruct_temp_0.0,90
 run_23_repetition_2,TODO,deepseek-coder-33b-instruct_temp_0.0,53
