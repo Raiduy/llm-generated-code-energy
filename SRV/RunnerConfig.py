@@ -103,7 +103,7 @@ class RunnerConfig:
                         --interval {sampling_interval} \
                         --output {context.run_dir / "energibridge.csv"} \
                         --summary \
-                        python3 ./SRV/code/{llm}/{code}.py'
+                        python3 ./code/{llm}/{code}.py'
 
         #time.sleep(1) # allow the process to run a little before measuring
         energibridge_log = open(f'{context.run_dir}/energibridge.log', 'w')
