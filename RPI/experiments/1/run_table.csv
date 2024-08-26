@@ -51,7 +51,7 @@ run_21_repetition_1,DONE,deepseek-coder-33b-instruct_temp_0.0,63
 run_22_repetition_1,DONE,deepseek-coder-33b-instruct_temp_0.0,90
 run_23_repetition_1,DONE,deepseek-coder-33b-instruct_temp_0.0,53
 run_24_repetition_1,DONE,deepseek-coder-33b-instruct_temp_0.0,66
-run_25_repetition_1,TODO,deepseek-coder-33b-instruct_temp_0.0,52
+run_25_repetition_1,DONE,deepseek-coder-33b-instruct_temp_0.0,52
 run_26_repetition_1,TODO,deepseek-coder-33b-instruct_temp_0.0,16
 run_0_repetition_2,TODO,chatgpt_temp_0.0,4
 run_1_repetition_2,TODO,chatgpt_temp_0.0,61
