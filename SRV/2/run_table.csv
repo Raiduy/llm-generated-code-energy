@@ -71,7 +71,7 @@ run_14_repetition_2,DONE,200,speechless-codellama-34b_temp_0.0,53,152.703,132973
 run_15_repetition_2,DONE,200,speechless-codellama-34b_temp_0.0,66,155.707,138006479.317,25837160.737,0,404335509504.0,0.0,27023194600.369,0.0,4324.79
 run_16_repetition_2,DONE,200,speechless-codellama-34b_temp_0.0,52,173.116,155168297.033,33455211.665,0,404335509504.0,0.0,27030820946.676,0.0,4530.37
 run_17_repetition_2,DONE,200,speechless-codellama-34b_temp_0.0,16,173.117,156873418.912,38285715.221,0,404335509504.0,0.0,27062970979.802,0.0,4458.111
-run_18_repetition_2,TODO,200,wizardcoder-33b-1.1_temp_0.0,4, , , , , , , , , 
+run_18_repetition_2,DONE,200,wizardcoder-33b-1.1_temp_0.0,4,170.513,156176833.792,42433401.028,0,404335509504.0,0.0,27029666362.754,0.0,4398.207
 run_19_repetition_2,TODO,200,wizardcoder-33b-1.1_temp_0.0,61, , , , , , , , , 
 run_20_repetition_2,TODO,200,wizardcoder-33b-1.1_temp_0.0,79, , , , , , , , , 
 run_21_repetition_2,TODO,200,wizardcoder-33b-1.1_temp_0.0,63, , , , , , , , , 
