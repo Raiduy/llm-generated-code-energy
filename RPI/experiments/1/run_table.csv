@@ -1,5 +1,5 @@
 __run_id,__done,llm,code
-run_0_repetition_0,TODO,chatgpt_temp_0.0,4
+run_0_repetition_0,DONE,chatgpt_temp_0.0,4
 run_0_repetition_1,TODO,chatgpt_temp_0.0,4
 run_0_repetition_2,TODO,chatgpt_temp_0.0,4
 run_0_repetition_3,TODO,chatgpt_temp_0.0,4
