@@ -37,8 +37,6 @@ class RunnerConfig:
     This can be essential to accommodate for cooldown periods on some systems."""
     time_between_runs_in_ms:    int             = 60000
 
-    csv_tracker = {}
-
     # Dynamic configurations can be one-time satisfied here before the program takes the config as-is
     # e.g. Setting some variable based on some criteria
     def __init__(self):
@@ -108,15 +106,12 @@ class RunnerConfig:
         llm = context.run_variation['llm']
         code = context.run_variation['code']
 
-        csv_filename = f'{llm}__{code}'
+        output.console_log(f'LLM: {llm}')
+        output.console_log(f'CODE: {code}')
 
-        if csv_filename in self.csv_tracker:
-            self.csv_tracker[csv_filename] += 1
-        else:
-            self.csv_tracker[csv_filename] = 0
-        csv_filename = f'{csv_filename}__{self.csv_tracker[csv_filename]}'
+        dev_pc_filename = str(context.run_dir).split(f'/')[-1]
 
-        res = requests.post(f'http://{SERVER_HOST}/start/{csv_filename}', json={}, headers={'Content-Type': 'application/json'})
+        res = requests.post(f'http://{SERVER_HOST}/start/{dev_pc_filename}', json={}, headers={'Content-Type': 'application/json'})
         output.console_log(res.text)
 
         self.profiler = subprocess.Popen(['sar', '-A', '-o', context.run_dir / "sar_log.file", '1', '800'],
