@@ -65,7 +65,7 @@ class RunnerConfig:
         self.run_table_model = RunTableModel(
             factors = [sampling_factor, llm, code],
             data_columns=['Time', 'TOTAL_DRAM_ENERGY (J)', 'TOTAL_PACKAGE_ENERGY (J)',
-                          'TOTAL_PP0_ENERGY (J)', 'TOTAL_PP1_ENERGY (J)', 
+                          'TOTAL_PP0_ENERGY (J)', 
                           'TOTAL_MEMORY', 'TOTAL_SWAP',
                           'AVG_USED_MEMORY', 'AVG_USED_SWAP', 
                           'TOTAL_ENERGY (J)'],
@@ -155,7 +155,6 @@ class RunnerConfig:
                 'TOTAL_DRAM_ENERGY (J)'       : round(df['DRAM_ENERGY (J)'].sum(), 3),
                 'TOTAL_PACKAGE_ENERGY (J)'    : round(df['PACKAGE_ENERGY (J)'].sum(), 3),
                 'TOTAL_PP0_ENERGY (J)'        : round(df['PP0_ENERGY (J)'].sum(), 3),
-                'TOTAL_PP1_ENERGY (J)'        : round(df['PP1_ENERGY (J)'].sum(), 3),
                 'TOTAL_MEMORY'                : round(df['TOTAL_MEMORY'].mean() if df['TOTAL_MEMORY'].std() == 0 else -1, 3),
                 'TOTAL_SWAP'                  : round(df['TOTAL_SWAP'].mean() if df['TOTAL_SWAP'].std() == 0 else -1, 3),
                 'AVG_USED_MEMORY'             : round(df['USED_MEMORY'].mean(), 3),
