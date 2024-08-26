@@ -84,7 +84,7 @@ run_0_repetition_3,DONE,200,code-millenials-34b_temp_0.0,4,179.716,189686185.676
 run_1_repetition_3,DONE,200,code-millenials-34b_temp_0.0,61,137.49,147460825.227,78449254.218,0,404335509504.0,0.0,27031779218.02,0.0,4375.714
 run_2_repetition_3,DONE,200,code-millenials-34b_temp_0.0,79,166.509,180972739.541,99785138.026,0,404335509504.0,0.0,27035261055.693,0.0,5129.231
 run_3_repetition_3,DONE,200,code-millenials-34b_temp_0.0,63,180.924,200095240.78,114547912.634,0,404335509504.0,0.0,27035956963.179,0.0,6016.303
-run_4_repetition_3,TODO,200,code-millenials-34b_temp_0.0,90, , , , , , , , , 
+run_4_repetition_3,DONE,200,code-millenials-34b_temp_0.0,90,194.732,219225634.029,130234667.335,0,404335509504.0,0.0,27039264196.661,0.0,6230.108
 run_5_repetition_3,TODO,200,code-millenials-34b_temp_0.0,53, , , , , , , , , 
 run_6_repetition_3,TODO,200,code-millenials-34b_temp_0.0,66, , , , , , , , , 
 run_7_repetition_3,TODO,200,code-millenials-34b_temp_0.0,52, , , , , , , , , 
