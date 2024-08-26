@@ -119,7 +119,7 @@ run_8_repetition_4,DONE,code-millenials-34b_temp_0.0,16
 run_9_repetition_4,DONE,speechless-codellama-34b_temp_0.0,4
 run_10_repetition_4,DONE,speechless-codellama-34b_temp_0.0,61
 run_11_repetition_4,DONE,speechless-codellama-34b_temp_0.0,79
-run_12_repetition_4,TODO,speechless-codellama-34b_temp_0.0,63
+run_12_repetition_4,DONE,speechless-codellama-34b_temp_0.0,63
 run_13_repetition_4,TODO,speechless-codellama-34b_temp_0.0,90
 run_14_repetition_4,TODO,speechless-codellama-34b_temp_0.0,53
 run_15_repetition_4,TODO,speechless-codellama-34b_temp_0.0,66
