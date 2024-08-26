@@ -245,7 +245,7 @@ run_26_repetition_8,DONE,deepseek-coder-33b-instruct_temp_0.0,16
 run_0_repetition_9,DONE,chatgpt_temp_0.0,4
 run_1_repetition_9,DONE,chatgpt_temp_0.0,61
 run_2_repetition_9,DONE,chatgpt_temp_0.0,79
-run_3_repetition_9,TODO,chatgpt_temp_0.0,63
+run_3_repetition_9,DONE,chatgpt_temp_0.0,63
 run_4_repetition_9,TODO,chatgpt_temp_0.0,90
 run_5_repetition_9,TODO,chatgpt_temp_0.0,53
 run_6_repetition_9,TODO,chatgpt_temp_0.0,66
