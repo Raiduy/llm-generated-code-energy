@@ -90,7 +90,7 @@ run_6_repetition_3,DONE,200,code-millenials-34b_temp_0.0,66,150.105,174270307.09
 run_7_repetition_3,DONE,200,code-millenials-34b_temp_0.0,52,174.115,204659901.764,132585152.071,0,404335509504.0,0.0,27044110725.872,0.0,5836.365
 run_8_repetition_3,DONE,200,code-millenials-34b_temp_0.0,16,178.32,213157800.522,141949980.511,0,404335509504.0,0.0,27077120504.546,0.0,5434.819
 run_9_repetition_3,DONE,200,speechless-codellama-34b_temp_0.0,4,141.295,171023789.126,116690799.069,0,404335509504.0,0.0,27039638256.09,0.0,4534.796
-run_10_repetition_3,TODO,200,speechless-codellama-34b_temp_0.0,61, , , , , , , , , 
+run_10_repetition_3,DONE,200,speechless-codellama-34b_temp_0.0,61,153.902,188220107.273,131263295.494,0,404335509504.0,0.0,27039463692.285,0.0,3979.157
 run_11_repetition_3,TODO,200,speechless-codellama-34b_temp_0.0,79, , , , , , , , , 
 run_12_repetition_3,TODO,200,speechless-codellama-34b_temp_0.0,63, , , , , , , , , 
 run_13_repetition_3,TODO,200,speechless-codellama-34b_temp_0.0,90, , , , , , , , , 
