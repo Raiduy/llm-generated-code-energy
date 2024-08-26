@@ -23,7 +23,7 @@ class RunnerConfig:
 
     # ================================ USER SPECIFIC CONFIG ================================
     """The name of the experiment."""
-    name:                       str             = "test"
+    name:                       str             = "1"
 
     """The path in which Experiment Runner will create a folder with the name `self.name`, in order to store the
     results from this experiment. (Path does not need to exist - it will be created if necessary.)
@@ -35,7 +35,7 @@ class RunnerConfig:
 
     """The time Experiment Runner will wait after a run completes.
     This can be essential to accommodate for cooldown periods on some systems."""
-    time_between_runs_in_ms:    int             = 60000
+    time_between_runs_in_ms:    int             = 1000 #60000
 
     csv_tracker = {}
 
@@ -62,8 +62,8 @@ class RunnerConfig:
     def create_run_table_model(self) -> RunTableModel:
         """Create and return the run_table model here. A run_table is a List (rows) of tuples (columns),
         representing each run performed"""
-        llm = FactorModel("llm", ['chatgpt_temp_0.0', 'gpt-4_temp_0.0', 'deepseek-coder-33b-instruct_temp_0.0'])
-        code = FactorModel("code", ['4', '61', '79', '63', '90', '53', '66', '52', '16'])
+        llm = FactorModel("llm", ['chatgpt_temp_0.0'])#, 'gpt-4_temp_0.0', 'deepseek-coder-33b-instruct_temp_0.0'])
+        code = FactorModel("code", ['4'])#, '61', '79', '63', '90', '53', '66', '52', '16'])
         self.run_table_model = RunTableModel(
             factors = [llm, code],
             repetitions=21,
@@ -114,9 +114,13 @@ class RunnerConfig:
             self.csv_tracker[csv_filename] += 1
         else:
             self.csv_tracker[csv_filename] = 0
-        csv_filename = f'{csv_filename}__{self.csv_tracker[csv_filename]}'
+        csv_file = f'{csv_filename}__{self.csv_tracker[csv_filename]}'
 
-        res = requests.post(f'http://{SERVER_HOST}/start/{csv_filename}', json={}, headers={'Content-Type': 'application/json'})
+        output.console_log(f'LLM: {llm}')
+        output.console_log(f'CODE: {code}')
+        output.console_log(f'FILENAME: {csv_file}')
+        output.console_log(f'DICT: {self.csv_tracker}')
+        res = requests.post(f'http://{SERVER_HOST}/start/{csv_file}', json={}, headers={'Content-Type': 'application/json'})
         output.console_log(res.text)
 
         self.profiler = subprocess.Popen(['sar', '-A', '-o', context.run_dir / "sar_log.file", '1', '800'],
