@@ -55,7 +55,7 @@ run_25_repetition_1,DONE,200,deepseek-coder-33b-instruct_temp_0.0,52,206.108,376
 run_26_repetition_1,DONE,200,deepseek-coder-33b-instruct_temp_0.0,16,260.369,51262314.043,274445248.116,0,404334891008.0,8589930496.0,37555435433.553,12402688.0,8858.871
 run_0_repetition_2,DONE,200,chatgpt_temp_0.0,4,198.123,41141578.623,217168835.136,0,404334891008.0,8589930496.0,37520791287.742,12402688.0,5396.311
 run_1_repetition_2,DONE,200,chatgpt_temp_0.0,61,158.505,33296380.918,178604290.043,0,404334891008.0,8589930496.0,37522601101.864,12402688.0,4318.455
-run_2_repetition_2,TODO,200,chatgpt_temp_0.0,79, , , , , , , , , 
+run_2_repetition_2,DONE,200,chatgpt_temp_0.0,79,196.724,41769002.716,227479203.928,0,404334891008.0,8589930496.0,37527356560.504,12402688.0,5369.21
 run_3_repetition_2,TODO,200,chatgpt_temp_0.0,63, , , , , , , , , 
 run_4_repetition_2,TODO,200,chatgpt_temp_0.0,90, , , , , , , , , 
 run_5_repetition_2,TODO,200,chatgpt_temp_0.0,53, , , , , , , , , 
