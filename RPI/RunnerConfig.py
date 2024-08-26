@@ -55,7 +55,6 @@ class RunnerConfig:
             (RunnerEvents.AFTER_EXPERIMENT , self.after_experiment )
         ])
         self.run_table_model = None  # Initialized later
-        self.csv_tracker = {}
         output.console_log("Custom config loaded")
 
     def create_run_table_model(self) -> RunTableModel:
@@ -107,20 +106,13 @@ class RunnerConfig:
         llm = context.run_variation['llm']
         code = context.run_variation['code']
 
-        csv_filename = f'{llm}__{code}'
-
-        if csv_filename in self.csv_tracker:
-            self.csv_tracker[csv_filename] += 1
-        else:
-            self.csv_tracker[csv_filename] = 0
-        csv_file = f'{csv_filename}__{self.csv_tracker[csv_filename]}'
-
         output.console_log(f'LLM: {llm}')
         output.console_log(f'CODE: {code}')
-        output.console_log(f'FILENAME: {csv_file}')
-        output.console_log(f'DICT: {self.csv_tracker}')
         output.console_log(f'RUNDIR: {context.run_dir}')
-        res = requests.post(f'http://{SERVER_HOST}/start/{csv_file}', json={}, headers={'Content-Type': 'application/json'})
+
+        dev_pc_filename = context.run_dir.split('/')[-1]
+
+        res = requests.post(f'http://{SERVER_HOST}/start/{dev_pc_filename}', json={}, headers={'Content-Type': 'application/json'})
         output.console_log(res.text)
 
         self.profiler = subprocess.Popen(['sar', '-A', '-o', context.run_dir / "sar_log.file", '1', '800'],
