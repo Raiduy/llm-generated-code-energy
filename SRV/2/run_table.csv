@@ -2,7 +2,7 @@ __run_id,__done,sampling,llm,code,Time,TOTAL_DRAM_ENERGY (J),TOTAL_PACKAGE_ENERG
 run_0_repetition_0,DONE,200,code-millenials-34b_temp_0.0,4,178.719,199420737.491,115923004.569,0,404335509504.0,0.0,27008506970.387,0.0,5057.695
 run_1_repetition_0,DONE,200,code-millenials-34b_temp_0.0,61,135.695,153546956.41,92084030.172,0,404335509504.0,0.0,27008934966.212,0.0,4356.295
 run_2_repetition_0,DONE,200,code-millenials-34b_temp_0.0,79,167.716,192422854.894,118748743.332,0,404335509504.0,0.0,27009963656.533,0.0,5406.416
-run_3_repetition_0,TODO,200,code-millenials-34b_temp_0.0,63, , , , , , , , , 
+run_3_repetition_0,DONE,200,code-millenials-34b_temp_0.0,63,176.521,205148383.933,130495232.005,0,404335509504.0,0.0,27009640883.548,0.0,4987.694
 run_4_repetition_0,TODO,200,code-millenials-34b_temp_0.0,90, , , , , , , , , 
 run_5_repetition_0,TODO,200,code-millenials-34b_temp_0.0,53, , , , , , , , , 
 run_6_repetition_0,TODO,200,code-millenials-34b_temp_0.0,66, , , , , , , , , 
