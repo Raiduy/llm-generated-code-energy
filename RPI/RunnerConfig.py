@@ -37,7 +37,6 @@ class RunnerConfig:
     This can be essential to accommodate for cooldown periods on some systems."""
     time_between_runs_in_ms:    int             = 1000 #60000
 
-    csv_tracker = {}
 
     # Dynamic configurations can be one-time satisfied here before the program takes the config as-is
     # e.g. Setting some variable based on some criteria
@@ -56,7 +55,7 @@ class RunnerConfig:
             (RunnerEvents.AFTER_EXPERIMENT , self.after_experiment )
         ])
         self.run_table_model = None  # Initialized later
-
+        self.csv_tracker = {}
         output.console_log("Custom config loaded")
 
     def create_run_table_model(self) -> RunTableModel:
