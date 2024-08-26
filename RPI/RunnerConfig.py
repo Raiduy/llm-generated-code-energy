@@ -110,7 +110,7 @@ class RunnerConfig:
         output.console_log(f'CODE: {code}')
         output.console_log(f'RUNDIR: {context.run_dir}')
 
-        dev_pc_filename = context.run_dir.split(f'{self.name}/')[1]
+        dev_pc_filename = str(context.run_dir).split(f'/')[-1]
 
         res = requests.post(f'http://{SERVER_HOST}/start/{dev_pc_filename}', json={}, headers={'Content-Type': 'application/json'})
         output.console_log(res.text)
