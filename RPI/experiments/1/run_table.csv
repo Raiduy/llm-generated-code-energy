@@ -449,7 +449,7 @@ run_14_repetition_16,DONE,gpt-4_temp_0.0,53
 run_15_repetition_16,DONE,gpt-4_temp_0.0,66
 run_16_repetition_16,DONE,gpt-4_temp_0.0,52
 run_17_repetition_16,DONE,gpt-4_temp_0.0,16
-run_18_repetition_16,TODO,deepseek-coder-33b-instruct_temp_0.0,4
+run_18_repetition_16,DONE,deepseek-coder-33b-instruct_temp_0.0,4
 run_19_repetition_16,TODO,deepseek-coder-33b-instruct_temp_0.0,61
 run_20_repetition_16,TODO,deepseek-coder-33b-instruct_temp_0.0,79
 run_21_repetition_16,TODO,deepseek-coder-33b-instruct_temp_0.0,63
