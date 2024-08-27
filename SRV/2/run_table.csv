@@ -380,7 +380,7 @@ run_26_repetition_13,DONE,200,wizardcoder-33b-1.1_temp_0.0,16,173.317,82796489.0
 run_0_repetition_14,DONE,200,code-millenials-34b_temp_0.0,4,178.529,88786664.904,108244220.023,0,404335509504.0,0.0,27245888505.128,0.0,5966.656
 run_1_repetition_14,DONE,200,code-millenials-34b_temp_0.0,61,138.101,71340369.16,88218745.939,0,404335509504.0,0.0,27245848978.497,0.0,4488.525
 run_2_repetition_14,DONE,200,code-millenials-34b_temp_0.0,79,163.111,86255907.201,108603324.968,0,404335509504.0,0.0,27246728401.312,0.0,4276.825
-run_3_repetition_14,TODO,200,code-millenials-34b_temp_0.0,63, , , , , , , , , 
+run_3_repetition_14,DONE,200,code-millenials-34b_temp_0.0,63,178.717,97105827.708,124451909.53,0,404335509504.0,0.0,27249876529.77,0.0,5851.318
 run_4_repetition_14,TODO,200,code-millenials-34b_temp_0.0,90, , , , , , , , , 
 run_5_repetition_14,TODO,200,code-millenials-34b_temp_0.0,53, , , , , , , , , 
 run_6_repetition_14,TODO,200,code-millenials-34b_temp_0.0,66, , , , , , , , , 
