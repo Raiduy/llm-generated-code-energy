@@ -248,7 +248,7 @@ run_2_repetition_9,DONE,200,code-millenials-34b_temp_0.0,79,162.512,162176306.74
 run_3_repetition_9,DONE,200,code-millenials-34b_temp_0.0,63,175.519,176864858.739,73325732.151,0,404335509504.0,0.0,27147043990.28,0.0,4588.483
 run_4_repetition_9,DONE,200,code-millenials-34b_temp_0.0,90,193.523,198168872.055,87251247.493,0,404335509504.0,0.0,27150271102.283,0.0,6468.342
 run_5_repetition_9,DONE,200,code-millenials-34b_temp_0.0,53,156.5,163349075.608,75906779.582,0,404335509504.0,0.0,27148683671.51,0.0,5060.305
-run_6_repetition_9,TODO,200,code-millenials-34b_temp_0.0,66, , , , , , , , , 
+run_6_repetition_9,DONE,200,code-millenials-34b_temp_0.0,66,149.697,158963085.813,77264312.171,0,404335509504.0,0.0,27149621968.896,0.0,4980.025
 run_7_repetition_9,TODO,200,code-millenials-34b_temp_0.0,52, , , , , , , , , 
 run_8_repetition_9,TODO,200,code-millenials-34b_temp_0.0,16, , , , , , , , , 
 run_9_repetition_9,TODO,200,speechless-codellama-34b_temp_0.0,4, , , , , , , , , 
