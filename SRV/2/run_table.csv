@@ -463,7 +463,7 @@ run_1_repetition_17,DONE,200,code-millenials-34b_temp_0.0,61,136.688,60232744.52
 run_2_repetition_17,DONE,200,code-millenials-34b_temp_0.0,79,166.711,76065521.375,90650699.54,0,404335509504.0,0.0,27230455437.643,0.0,5528.176
 run_3_repetition_17,DONE,200,code-millenials-34b_temp_0.0,63,177.716,84161941.033,102388749.521,0,404335509504.0,0.0,27232337252.674,0.0,4952.771
 run_4_repetition_17,DONE,200,code-millenials-34b_temp_0.0,90,193.332,94458154.175,117622609.743,0,404335509504.0,0.0,27235912598.215,0.0,5621.111
-run_5_repetition_17,TODO,200,code-millenials-34b_temp_0.0,53, , , , , , , , , 
+run_5_repetition_17,DONE,200,code-millenials-34b_temp_0.0,53,153.706,77560834.664,98432221.026,0,404335509504.0,0.0,27234220175.626,0.0,5152.478
 run_6_repetition_17,TODO,200,code-millenials-34b_temp_0.0,66, , , , , , , , , 
 run_7_repetition_17,TODO,200,code-millenials-34b_temp_0.0,52, , , , , , , , , 
 run_8_repetition_17,TODO,200,code-millenials-34b_temp_0.0,16, , , , , , , , , 
