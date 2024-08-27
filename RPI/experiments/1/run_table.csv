@@ -543,7 +543,7 @@ run_0_repetition_20,DONE,chatgpt_temp_0.0,4
 run_1_repetition_20,DONE,chatgpt_temp_0.0,61
 run_2_repetition_20,DONE,chatgpt_temp_0.0,79
 run_3_repetition_20,DONE,chatgpt_temp_0.0,63
-run_4_repetition_20,TODO,chatgpt_temp_0.0,90
+run_4_repetition_20,DONE,chatgpt_temp_0.0,90
 run_5_repetition_20,TODO,chatgpt_temp_0.0,53
 run_6_repetition_20,TODO,chatgpt_temp_0.0,66
 run_7_repetition_20,TODO,chatgpt_temp_0.0,52
