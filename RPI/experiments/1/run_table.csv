@@ -552,7 +552,7 @@ run_9_repetition_20,DONE,gpt-4_temp_0.0,4
 run_10_repetition_20,DONE,gpt-4_temp_0.0,61
 run_11_repetition_20,DONE,gpt-4_temp_0.0,79
 run_12_repetition_20,DONE,gpt-4_temp_0.0,63
-run_13_repetition_20,TODO,gpt-4_temp_0.0,90
+run_13_repetition_20,DONE,gpt-4_temp_0.0,90
 run_14_repetition_20,TODO,gpt-4_temp_0.0,53
 run_15_repetition_20,TODO,gpt-4_temp_0.0,66
 run_16_repetition_20,TODO,gpt-4_temp_0.0,52
