@@ -290,7 +290,7 @@ run_17_repetition_10,DONE,200,gpt-4_temp_0.0,16,258.759,58203230.828,312936779.8
 run_18_repetition_10,DONE,200,deepseek-coder-33b-instruct_temp_0.0,4,198.925,46229321.576,248607817.166,0,404334891008.0,8589930496.0,37827382374.811,12402688.0,6160.329
 run_19_repetition_10,DONE,200,deepseek-coder-33b-instruct_temp_0.0,61,266.363,63081338.383,342994026.4,0,404334891008.0,8589930496.0,37772336236.315,12402688.0,7276.777
 run_20_repetition_10,TODO,200,deepseek-coder-33b-instruct_temp_0.0,79, , , , , , , , , 
-run_21_repetition_10,TODO,200,deepseek-coder-33b-instruct_temp_0.0,63, , , , , , , , , 
+run_21_repetition_10,DONE,200,deepseek-coder-33b-instruct_temp_0.0,63,246.759,62518557.787,13821879.591,0,404334891008.0,8589930496.0,48098900152.071,12402688.0,7368.031
 run_22_repetition_10,TODO,200,deepseek-coder-33b-instruct_temp_0.0,90, , , , , , , , , 
 run_23_repetition_10,TODO,200,deepseek-coder-33b-instruct_temp_0.0,53, , , , , , , , , 
 run_24_repetition_10,TODO,200,deepseek-coder-33b-instruct_temp_0.0,66, , , , , , , , , 
