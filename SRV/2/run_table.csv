@@ -112,7 +112,7 @@ run_1_repetition_4,DONE,200,code-millenials-34b_temp_0.0,61,137.093,23591076.79,
 run_2_repetition_4,DONE,200,code-millenials-34b_temp_0.0,79,166.114,30695987.423,20065568.76,0,404335509504.0,0.0,27056146505.846,0.0,5391.593
 run_3_repetition_4,DONE,200,code-millenials-34b_temp_0.0,63,177.318,35741974.49,27083395.208,0,404335509504.0,0.0,27059088697.658,0.0,5336.04
 run_4_repetition_4,DONE,200,code-millenials-34b_temp_0.0,90,193.331,41891448.522,35772434.82,0,404335509504.0,0.0,27061720453.289,0.0,5037.168
-run_5_repetition_4,TODO,200,code-millenials-34b_temp_0.0,53, , , , , , , , , 
+run_5_repetition_4,DONE,200,code-millenials-34b_temp_0.0,53,153.5,35543258.884,33169665.468,0,404335509504.0,0.0,27057204891.131,0.0,5125.2
 run_6_repetition_4,TODO,200,code-millenials-34b_temp_0.0,66, , , , , , , , , 
 run_7_repetition_4,TODO,200,code-millenials-34b_temp_0.0,52, , , , , , , , , 
 run_8_repetition_4,TODO,200,code-millenials-34b_temp_0.0,16, , , , , , , , , 
