@@ -129,7 +129,7 @@ run_18_repetition_4,DONE,200,deepseek-coder-33b-instruct_temp_0.0,4,197.524,1204
 run_19_repetition_4,DONE,200,deepseek-coder-33b-instruct_temp_0.0,61,264.965,163218356.03,254779883.592,0,404334891008.0,8589930496.0,37569861681.424,12402688.0,7240.683
 run_20_repetition_4,DONE,200,deepseek-coder-33b-instruct_temp_0.0,79,195.722,121166935.973,195606965.233,0,404334891008.0,8589930496.0,37573755001.208,12402688.0,5340.069
 run_21_repetition_4,DONE,200,deepseek-coder-33b-instruct_temp_0.0,63,236.353,146877020.442,244503460.654,0,404334891008.0,8589930496.0,47658996941.146,12402688.0,6468.427
-run_22_repetition_4,TODO,200,deepseek-coder-33b-instruct_temp_0.0,90, , , , , , , , , 
+run_22_repetition_4,DONE,200,deepseek-coder-33b-instruct_temp_0.0,90,176.307,110972727.25,189044210.719,0,404334891008.0,8589930496.0,37591135789.807,12402688.0,6013.11
 run_23_repetition_4,TODO,200,deepseek-coder-33b-instruct_temp_0.0,53, , , , , , , , , 
 run_24_repetition_4,TODO,200,deepseek-coder-33b-instruct_temp_0.0,66, , , , , , , , , 
 run_25_repetition_4,TODO,200,deepseek-coder-33b-instruct_temp_0.0,52, , , , , , , , , 
