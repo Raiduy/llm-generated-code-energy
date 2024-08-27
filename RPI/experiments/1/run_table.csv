@@ -490,7 +490,7 @@ run_1_repetition_18,DONE,chatgpt_temp_0.0,61
 run_2_repetition_18,DONE,chatgpt_temp_0.0,79
 run_3_repetition_18,DONE,chatgpt_temp_0.0,63
 run_4_repetition_18,DONE,chatgpt_temp_0.0,90
-run_5_repetition_18,TODO,chatgpt_temp_0.0,53
+run_5_repetition_18,DONE,chatgpt_temp_0.0,53
 run_6_repetition_18,TODO,chatgpt_temp_0.0,66
 run_7_repetition_18,TODO,chatgpt_temp_0.0,52
 run_8_repetition_18,TODO,chatgpt_temp_0.0,16
