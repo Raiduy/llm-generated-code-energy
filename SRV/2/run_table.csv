@@ -436,7 +436,7 @@ run_1_repetition_16,DONE,200,code-millenials-34b_temp_0.0,61,135.292,6556520.028
 run_2_repetition_16,DONE,200,code-millenials-34b_temp_0.0,79,170.109,10325399.275,175456923.122,0,404335509504.0,0.0,27298259073.803,0.0,5374.739
 run_3_repetition_16,DONE,200,code-millenials-34b_temp_0.0,63,181.922,13839761.869,193339552.659,0,404335509504.0,0.0,27299577995.381,0.0,4735.645
 run_4_repetition_16,DONE,200,code-millenials-34b_temp_0.0,90,192.125,16967237.206,210038774.689,0,404335509504.0,0.0,27302607635.692,0.0,5659.54
-run_5_repetition_16,TODO,200,code-millenials-34b_temp_0.0,53, , , , , , , , , 
+run_5_repetition_16,DONE,200,code-millenials-34b_temp_0.0,53,158.699,17072519.371,178968774.222,0,404335509504.0,0.0,27300010177.208,0.0,5320.244
 run_6_repetition_16,TODO,200,code-millenials-34b_temp_0.0,66, , , , , , , , , 
 run_7_repetition_16,TODO,200,code-millenials-34b_temp_0.0,52, , , , , , , , , 
 run_8_repetition_16,TODO,200,code-millenials-34b_temp_0.0,16, , , , , , , , , 
