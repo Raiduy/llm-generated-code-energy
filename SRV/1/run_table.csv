@@ -271,7 +271,7 @@ run_25_repetition_9,DONE,200,deepseek-coder-33b-instruct_temp_0.0,52,188.918,234
 run_26_repetition_9,DONE,200,deepseek-coder-33b-instruct_temp_0.0,16,260.56,34004905.277,159367402.499,0,404334891008.0,8589930496.0,37793399641.521,12402688.0,8273.387
 run_0_repetition_10,DONE,200,chatgpt_temp_0.0,4,197.723,27744026.76,129107134.027,0,404334891008.0,8589930496.0,37762435018.214,12402688.0,5395.285
 run_1_repetition_10,DONE,200,chatgpt_temp_0.0,61,158.698,22651960.087,108471235.587,0,404334891008.0,8589930496.0,37764520695.95,12402688.0,4323.743
-run_2_repetition_10,TODO,200,chatgpt_temp_0.0,79, , , , , , , , , 
+run_2_repetition_10,DONE,200,chatgpt_temp_0.0,79,201.305,29181563.019,143653616.562,0,404334891008.0,8589930496.0,37768185197.714,12402688.0,5491.765
 run_3_repetition_10,TODO,200,chatgpt_temp_0.0,63, , , , , , , , , 
 run_4_repetition_10,TODO,200,chatgpt_temp_0.0,90, , , , , , , , , 
 run_5_repetition_10,TODO,200,chatgpt_temp_0.0,53, , , , , , , , , 
