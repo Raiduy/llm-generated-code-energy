@@ -409,7 +409,7 @@ run_1_repetition_15,DONE,200,code-millenials-34b_temp_0.0,61,139.69,131885700.41
 run_2_repetition_15,DONE,200,code-millenials-34b_temp_0.0,79,166.514,159346057.769,32603943.334,0,404335509504.0,0.0,27271247965.314,0.0,4277.832
 run_3_repetition_15,DONE,200,code-millenials-34b_temp_0.0,63,176.321,170503824.495,39395561.821,0,404335509504.0,0.0,27272024643.841,0.0,4564.935
 run_4_repetition_15,DONE,200,code-millenials-34b_temp_0.0,90,194.735,191476435.889,49932439.165,0,404335509504.0,0.0,27276003506.544,0.0,6412.641
-run_5_repetition_15,TODO,200,code-millenials-34b_temp_0.0,53, , , , , , , , , 
+run_5_repetition_15,DONE,200,code-millenials-34b_temp_0.0,53,150.499,150538303.121,43380987.471,0,404335509504.0,0.0,27274870593.867,0.0,3967.538
 run_6_repetition_15,TODO,200,code-millenials-34b_temp_0.0,66, , , , , , , , , 
 run_7_repetition_15,TODO,200,code-millenials-34b_temp_0.0,52, , , , , , , , , 
 run_8_repetition_15,TODO,200,code-millenials-34b_temp_0.0,16, , , , , , , , , 
