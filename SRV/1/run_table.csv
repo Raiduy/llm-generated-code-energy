@@ -404,7 +404,7 @@ run_23_repetition_14,DONE,200,deepseek-coder-33b-instruct_temp_0.0,53,188.514,18
 run_24_repetition_14,TODO,200,deepseek-coder-33b-instruct_temp_0.0,66, , , , , , , , , 
 run_25_repetition_14,DONE,200,deepseek-coder-33b-instruct_temp_0.0,52,188.319,187217094.056,3668297.245,0,404334891008.0,8589930496.0,37804963590.244,12402688.0,5131.861
 run_26_repetition_14,DONE,200,deepseek-coder-33b-instruct_temp_0.0,16,257.367,256931901.768,14604160.383,0,404334891008.0,8589930496.0,37841805785.839,12402688.0,7244.266
-run_0_repetition_15,TODO,200,chatgpt_temp_0.0,4, , , , , , , , , 
+run_0_repetition_15,DONE,200,chatgpt_temp_0.0,4,197.328,197713630.807,18493139.17,0,404334891008.0,8589930496.0,37809395595.919,12402688.0,5368.801
 run_1_repetition_15,TODO,200,chatgpt_temp_0.0,61, , , , , , , , , 
 run_2_repetition_15,TODO,200,chatgpt_temp_0.0,79, , , , , , , , , 
 run_3_repetition_15,TODO,200,chatgpt_temp_0.0,63, , , , , , , , , 
