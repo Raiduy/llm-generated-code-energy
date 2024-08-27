@@ -439,7 +439,7 @@ run_4_repetition_16,DONE,chatgpt_temp_0.0,90
 run_5_repetition_16,DONE,chatgpt_temp_0.0,53
 run_6_repetition_16,DONE,chatgpt_temp_0.0,66
 run_7_repetition_16,DONE,chatgpt_temp_0.0,52
-run_8_repetition_16,TODO,chatgpt_temp_0.0,16
+run_8_repetition_16,DONE,chatgpt_temp_0.0,16
 run_9_repetition_16,TODO,gpt-4_temp_0.0,4
 run_10_repetition_16,TODO,gpt-4_temp_0.0,61
 run_11_repetition_16,TODO,gpt-4_temp_0.0,79
