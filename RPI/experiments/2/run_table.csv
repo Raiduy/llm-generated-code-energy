@@ -367,7 +367,7 @@ run_13_repetition_13,DONE,speechless-codellama-34b_temp_0.0,90
 run_14_repetition_13,DONE,speechless-codellama-34b_temp_0.0,53
 run_15_repetition_13,DONE,speechless-codellama-34b_temp_0.0,66
 run_16_repetition_13,DONE,speechless-codellama-34b_temp_0.0,52
-run_17_repetition_13,TODO,speechless-codellama-34b_temp_0.0,16
+run_17_repetition_13,DONE,speechless-codellama-34b_temp_0.0,16
 run_18_repetition_13,TODO,wizardcoder-33b-1.1_temp_0.0,4
 run_19_repetition_13,TODO,wizardcoder-33b-1.1_temp_0.0,61
 run_20_repetition_13,TODO,wizardcoder-33b-1.1_temp_0.0,79
