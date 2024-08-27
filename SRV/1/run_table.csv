@@ -267,7 +267,7 @@ run_21_repetition_9,DONE,200,deepseek-coder-33b-instruct_temp_0.0,63,236.36,2717
 run_22_repetition_9,DONE,200,deepseek-coder-33b-instruct_temp_0.0,90,175.305,20623903.722,84541602.171,0,404334891008.0,8589930496.0,37743538945.749,12402688.0,4777.836
 run_23_repetition_9,DONE,200,deepseek-coder-33b-instruct_temp_0.0,53,200.132,23993685.581,102789513.73,0,404334891008.0,8589930496.0,37744498659.385,12402688.0,5467.511
 run_24_repetition_9,DONE,200,deepseek-coder-33b-instruct_temp_0.0,66,157.099,19202019.517,85492854.87,0,404334891008.0,8589930496.0,37746532482.114,12402688.0,4298.333
-run_25_repetition_9,TODO,200,deepseek-coder-33b-instruct_temp_0.0,52, , , , , , , , , 
+run_25_repetition_9,DONE,200,deepseek-coder-33b-instruct_temp_0.0,52,188.918,23484469.825,108340034.124,0,404334891008.0,8589930496.0,37756259360.474,12402688.0,5160.47
 run_26_repetition_9,TODO,200,deepseek-coder-33b-instruct_temp_0.0,16, , , , , , , , , 
 run_0_repetition_10,TODO,200,chatgpt_temp_0.0,4, , , , , , , , , 
 run_1_repetition_10,TODO,200,chatgpt_temp_0.0,61, , , , , , , , , 
