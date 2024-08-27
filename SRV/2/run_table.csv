@@ -372,7 +372,7 @@ run_18_repetition_13,DONE,200,wizardcoder-33b-1.1_temp_0.0,4,171.721,56144852.09
 run_19_repetition_13,DONE,200,wizardcoder-33b-1.1_temp_0.0,61,250.766,86701504.018,83677367.01,0,404335509504.0,0.0,27231600326.68,0.0,6788.678
 run_20_repetition_13,DONE,200,wizardcoder-33b-1.1_temp_0.0,79,174.713,63105395.29,64473310.302,0,404335509504.0,0.0,27232950293.065,0.0,5476.615
 run_21_repetition_13,DONE,200,wizardcoder-33b-1.1_temp_0.0,63,209.745,80417808.294,85229579.551,0,404335509504.0,0.0,37118559428.998,0.0,6987.999
-run_22_repetition_13,TODO,200,wizardcoder-33b-1.1_temp_0.0,90, , , , , , , , , 
+run_22_repetition_13,DONE,200,wizardcoder-33b-1.1_temp_0.0,90,184.525,75008308.722,81988776.189,0,404335509504.0,0.0,27238112814.545,0.0,6048.907
 run_23_repetition_13,TODO,200,wizardcoder-33b-1.1_temp_0.0,53, , , , , , , , , 
 run_24_repetition_13,TODO,200,wizardcoder-33b-1.1_temp_0.0,66, , , , , , , , , 
 run_25_repetition_13,TODO,200,wizardcoder-33b-1.1_temp_0.0,52, , , , , , , , , 
