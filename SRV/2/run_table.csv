@@ -434,7 +434,7 @@ run_26_repetition_15,DONE,200,wizardcoder-33b-1.1_temp_0.0,16,177.525,2316790.82
 run_0_repetition_16,DONE,200,code-millenials-34b_temp_0.0,4,182.122,6096946.622,177456850.413,0,404335509504.0,0.0,27297078882.807,0.0,5976.476
 run_1_repetition_16,DONE,200,code-millenials-34b_temp_0.0,61,135.292,6556520.028,135930163.651,0,404335509504.0,0.0,27297379536.425,0.0,3512.746
 run_2_repetition_16,DONE,200,code-millenials-34b_temp_0.0,79,170.109,10325399.275,175456923.122,0,404335509504.0,0.0,27298259073.803,0.0,5374.739
-run_3_repetition_16,TODO,200,code-millenials-34b_temp_0.0,63, , , , , , , , , 
+run_3_repetition_16,DONE,200,code-millenials-34b_temp_0.0,63,181.922,13839761.869,193339552.659,0,404335509504.0,0.0,27299577995.381,0.0,4735.645
 run_4_repetition_16,TODO,200,code-millenials-34b_temp_0.0,90, , , , , , , , , 
 run_5_repetition_16,TODO,200,code-millenials-34b_temp_0.0,53, , , , , , , , , 
 run_6_repetition_16,TODO,200,code-millenials-34b_temp_0.0,66, , , , , , , , , 
