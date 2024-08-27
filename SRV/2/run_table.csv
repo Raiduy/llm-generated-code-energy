@@ -298,7 +298,7 @@ run_25_repetition_10,DONE,200,wizardcoder-33b-1.1_temp_0.0,52,173.315,85628270.7
 run_26_repetition_10,DONE,200,wizardcoder-33b-1.1_temp_0.0,16,172.72,87071964.809,117960865.201,0,404335509504.0,0.0,27217872642.664,0.0,4503.729
 run_0_repetition_11,DONE,200,code-millenials-34b_temp_0.0,4,176.119,90614427.378,125283975.469,0,404335509504.0,0.0,27181515286.059,0.0,4602.128
 run_1_repetition_11,DONE,200,code-millenials-34b_temp_0.0,61,135.69,71642252.139,100414376.314,0,404335509504.0,0.0,27181315126.212,0.0,4496.8
-run_2_repetition_11,TODO,200,code-millenials-34b_temp_0.0,79, , , , , , , , , 
+run_2_repetition_11,DONE,200,code-millenials-34b_temp_0.0,79,166.512,90871195.509,128294089.229,0,404335509504.0,0.0,27182058581.947,0.0,5585.117
 run_3_repetition_11,TODO,200,code-millenials-34b_temp_0.0,63, , , , , , , , , 
 run_4_repetition_11,TODO,200,code-millenials-34b_temp_0.0,90, , , , , , , , , 
 run_5_repetition_11,TODO,200,code-millenials-34b_temp_0.0,53, , , , , , , , , 
