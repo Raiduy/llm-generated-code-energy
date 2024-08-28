@@ -512,7 +512,7 @@ run_23_repetition_18,DONE,200,wizardcoder-33b-1.1_temp_0.0,53,150.903,184989456.
 run_24_repetition_18,DONE,200,wizardcoder-33b-1.1_temp_0.0,66,149.098,184309941.8,115192288.011,0,404335509504.0,0.0,27272896144.621,0.0,4056.387
 run_25_repetition_18,DONE,200,wizardcoder-33b-1.1_temp_0.0,52,174.317,217112717.684,139260983.489,0,404335509504.0,0.0,27278925279.743,0.0,4616.441
 run_26_repetition_18,DONE,200,wizardcoder-33b-1.1_temp_0.0,16,205.74,258661346.823,170633932.947,0,404335509504.0,0.0,27311788886.99,0.0,5433.178
-run_0_repetition_19,TODO,200,code-millenials-34b_temp_0.0,4, , , , , , , , , 
+run_0_repetition_19,DONE,200,code-millenials-34b_temp_0.0,4,180.515,230152661.333,155992288.987,0,404335509504.0,0.0,27276613849.487,0.0,6046.912
 run_1_repetition_19,TODO,200,code-millenials-34b_temp_0.0,61, , , , , , , , , 
 run_2_repetition_19,TODO,200,code-millenials-34b_temp_0.0,79, , , , , , , , , 
 run_3_repetition_19,TODO,200,code-millenials-34b_temp_0.0,63, , , , , , , , , 
