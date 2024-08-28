@@ -4,6 +4,7 @@ import usb
 import Monsoon.HVPM as HVPM
 import Monsoon.sampleEngine as sampleEngine
 import Monsoon.Operations as op
+import subprocess
 
 V_OUT = 5.1
 CAL_TIME = 1250
@@ -65,6 +66,10 @@ def stop():
         engine.disableCSVOutput() # Closes and writes the CSV file
         measurement_thread.join()
         measurement_thread = None
+        git_log = open(f'./git_log.log', 'a')
+        subprocess.call('git add .', shell=True, stdout=git_log, stderr=git_log)
+        subprocess.call('git commit -m "Experiment checkpoint"', shell=True, stdout=git_log, stderr=git_log)
+        subprocess.call('git push',shell=True, stdout=git_log, stderr=git_log)
         return 'OK'
     else:
         return 'No measurement running', 400
