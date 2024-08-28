@@ -66,7 +66,7 @@ def stop():
         engine.disableCSVOutput() # Closes and writes the CSV file
         measurement_thread.join()
         measurement_thread = None
-        git_log = open(f'./git_log.log', 'a')
+        git_log = open(f'./RPI/experiments/1/git_log.log', 'a')
         subprocess.call('git add .', shell=True, stdout=git_log, stderr=git_log)
         subprocess.call('git commit -m "Experiment checkpoint"', shell=True, stdout=git_log, stderr=git_log)
         subprocess.call('git push',shell=True, stdout=git_log, stderr=git_log)
