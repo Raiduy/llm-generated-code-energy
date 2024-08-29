@@ -460,7 +460,7 @@ run_25_repetition_16,DONE,200,deepseek-coder-33b-instruct_temp_0.0,52,193.117,12
 run_26_repetition_16,DONE,200,deepseek-coder-33b-instruct_temp_0.0,16,283.977,183888128.714,355220902.405,0,404334891008.0,8589930496.0,38257572077.804,12402688.0,8752.868
 run_0_repetition_17,DONE,200,chatgpt_temp_0.0,4,196.922,128699245.756,254356259.151,0,404334891008.0,8589930496.0,38225070823.594,12402688.0,5357.724
 run_1_repetition_17,TODO,200,chatgpt_temp_0.0,61, , , , , , , , , 
-run_2_repetition_17,TODO,200,chatgpt_temp_0.0,79, , , , , , , , , 
+run_2_repetition_17,DONE,200,chatgpt_temp_0.0,79,202.126,134969562.051,9017752.732,0,404334891008.0,8589930496.0,38230006205.217,12402688.0,6085.302
 run_3_repetition_17,TODO,200,chatgpt_temp_0.0,63, , , , , , , , , 
 run_4_repetition_17,TODO,200,chatgpt_temp_0.0,90, , , , , , , , , 
 run_5_repetition_17,TODO,200,chatgpt_temp_0.0,53, , , , , , , , , 
