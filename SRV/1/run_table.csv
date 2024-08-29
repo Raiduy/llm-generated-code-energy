@@ -538,7 +538,7 @@ run_22_repetition_19,DONE,200,deepseek-coder-33b-instruct_temp_0.0,90,175.508,19
 run_23_repetition_19,TODO,200,deepseek-coder-33b-instruct_temp_0.0,53, , , , , , , , , 
 run_24_repetition_19,DONE,200,deepseek-coder-33b-instruct_temp_0.0,66,158.902,180745552.938,7585355.418,0,404334891008.0,8589930496.0,38165062774.352,12402688.0,4313.593
 run_25_repetition_19,DONE,200,deepseek-coder-33b-instruct_temp_0.0,52,188.929,215253426.539,14593584.518,0,404334891008.0,8589930496.0,38175663227.4,12402688.0,5148.992
-run_26_repetition_19,TODO,200,deepseek-coder-33b-instruct_temp_0.0,16, , , , , , , , , 
+run_26_repetition_19,DONE,200,deepseek-coder-33b-instruct_temp_0.0,16,259.771,296558611.994,29520725.3,0,404334891008.0,8589930496.0,38208113868.8,12402688.0,7068.494
 run_0_repetition_20,TODO,200,chatgpt_temp_0.0,4, , , , , , , , , 
 run_1_repetition_20,TODO,200,chatgpt_temp_0.0,61, , , , , , , , , 
 run_2_repetition_20,TODO,200,chatgpt_temp_0.0,79, , , , , , , , , 
