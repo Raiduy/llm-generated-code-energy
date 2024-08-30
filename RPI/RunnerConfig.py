@@ -16,7 +16,7 @@ import subprocess
 import shlex
 import time
 
-SERVER_HOST = '192.168.0.15:5000'
+SERVER_HOST = '192.168.0.103:5000'
 
 class RunnerConfig:
     ROOT_DIR = Path(dirname(realpath(__file__)))
@@ -157,6 +157,10 @@ class RunnerConfig:
         Invoked only once during the lifetime of the program."""
 
         output.console_log("Config.after_experiment() called!")
+
+        git_log = open(f'./{self.name}/git_log.log', 'a')
+        subprocess.call('git add --all && git commit -m "Experiment finished" && git push',
+                        shell=True, stdout=git_log, stderr=git_log)
 
     # ================================ DO NOT ALTER BELOW THIS LINE ================================
     experiment_path:            Path             = None
