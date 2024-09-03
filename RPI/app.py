@@ -33,7 +33,7 @@ def start_measuring(filename):
     # is cleaned up. 🤢🤢🤢
     global engine
     print(f'Starting sampling for {filename}')
-    engine.enableCSVOutput(f"RPI/experiments/2/monsoon/{filename}.csv")
+    engine.enableCSVOutput(f"RPI/experiments/blank_experiment/monsoon/{filename}.csv")
     samples = sampleEngine.triggers.SAMPLECOUNT_INFINITE # no limit to samples
     try:
         engine.startSampling(
