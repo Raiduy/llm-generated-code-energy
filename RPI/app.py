@@ -33,7 +33,7 @@ def start_measuring(filename):
     # is cleaned up. 🤢🤢🤢
     global engine
     print(f'Starting sampling for {filename}')
-    engine.enableCSVOutput(f"RPI/experiments/1/monsoon/{filename}.csv")
+    engine.enableCSVOutput(f"RPI/experiments/blank_experiment/monsoon/{filename}.csv")
     samples = sampleEngine.triggers.SAMPLECOUNT_INFINITE # no limit to samples
     try:
         engine.startSampling(
@@ -66,9 +66,9 @@ def stop():
         engine.disableCSVOutput() # Closes and writes the CSV file
         measurement_thread.join()
         measurement_thread = None
-        git_log = open(f'./RPI/experiments/2/git_log.log', 'a')
+        git_log = open(f'./RPI/experiments/blank_experiment/git_log.log', 'a')
         subprocess.call('git add --all && git commit -m "Monsoon checkpoint" && git push',
-                        shell=True, stdout=git_log, stderr=git_log)e
+                        shell=True, stdout=git_log, stderr=git_log)
         return 'OK'
     else:
         return 'No measurement running', 400
