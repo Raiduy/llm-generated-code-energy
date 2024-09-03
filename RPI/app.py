@@ -66,9 +66,11 @@ def stop():
         engine.disableCSVOutput() # Closes and writes the CSV file
         measurement_thread.join()
         measurement_thread = None
+        
         git_log = open(f'./RPI/experiments/blank_experiment/git_log.log', 'a')
         subprocess.call('git add --all && git commit -m "Monsoon checkpoint" && git push',
                         shell=True, stdout=git_log, stderr=git_log)
+        
         return 'OK'
     else:
         return 'No measurement running', 400
