@@ -1,6 +1,6 @@
 __run_id,__done,sampling,code,Time,TOTAL_DRAM_ENERGY (J),TOTAL_PACKAGE_ENERGY (J),TOTAL_PP0_ENERGY (J),TOTAL_PP1_ENERGY (J),TOTAL_MEMORY,TOTAL_SWAP,AVG_USED_MEMORY,AVG_USED_SWAP,TOTAL_ENERGY (J)
 run_0_repetition_0,DONE,200,4, , , , , , , , , , 
-run_1_repetition_0,TODO,200,61, , , , , , , , , , 
+run_1_repetition_0,DONE,200,61, , , , , , , , , , 
 run_2_repetition_0,TODO,200,79, , , , , , , , , , 
 run_3_repetition_0,TODO,200,63, , , , , , , , , , 
 run_4_repetition_0,TODO,200,90, , , , , , , , , , 
