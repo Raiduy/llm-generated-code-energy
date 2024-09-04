@@ -4,6 +4,7 @@ import usb
 import Monsoon.HVPM as HVPM
 import Monsoon.sampleEngine as sampleEngine
 import Monsoon.Operations as op
+import subprocess
 
 V_OUT = 5.1
 CAL_TIME = 1250
@@ -32,7 +33,7 @@ def start_measuring(filename):
     # is cleaned up. 🤢🤢🤢
     global engine
     print(f'Starting sampling for {filename}')
-    engine.enableCSVOutput(f"{filename}.csv")
+    engine.enableCSVOutput(f"RPI/experiments/blank_experiment/monsoon/{filename}.csv")
     samples = sampleEngine.triggers.SAMPLECOUNT_INFINITE # no limit to samples
     try:
         engine.startSampling(
@@ -65,10 +66,13 @@ def stop():
         engine.disableCSVOutput() # Closes and writes the CSV file
         measurement_thread.join()
         measurement_thread = None
+        git_log = open(f'./RPI/experiments/blank_experiment/git_log.log', 'a')
+        subprocess.call('git add --all && git commit -m "Monsoon checkpoint" && git push',
+                        shell=True, stdout=git_log, stderr=git_log)
         return 'OK'
     else:
         return 'No measurement running', 400
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host="0.0.0.0")
