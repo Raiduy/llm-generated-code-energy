@@ -108,10 +108,8 @@ class RunnerConfig:
         """Perform any activity required for starting measurements."""
         output.console_log("Starting measurement on the dev computer...")
 
-        llm = context.run_variation['llm']
         code = context.run_variation['code']
 
-        output.console_log(f'LLM: {llm}')
         output.console_log(f'CODE: {code}')
 
         dev_pc_filename = str(context.run_dir).split(f'/')[-1]
