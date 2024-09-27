@@ -61,16 +61,11 @@ class RunnerConfig:
         representing each run performed"""
         sampling_factor = FactorModel("sampling", [200])
         llm = FactorModel("llm", ['chatgpt', 'gpt-4', 'deepseek-coder'])
-        llm = FactorModel("llm", ['speechless-codellama', 'code-millenials'])
         code = FactorModel("code", ['4', '61', '79', '63', '90', '53', '66', '52', '16'])
         self.run_table_model = RunTableModel(
             factors = [sampling_factor, llm, code],
             exclude_variations = [
                 {llm: ['deepseek-coder'], code: ['79']},
-            ],
-            exclude_variations = [
-                {llm: ['speechless-codellama'], code: ['52', '61', '90']},
-                {llm: ['code-millenials'], code: ['90']},
             ],
             data_columns=['Time', 'TOTAL_DRAM_ENERGY (J)', 'TOTAL_PACKAGE_ENERGY (J)',
                           'TOTAL_PP0_ENERGY (J)', 'TOTAL_PP1_ENERGY (J)', 
