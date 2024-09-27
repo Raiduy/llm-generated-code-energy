@@ -60,7 +60,7 @@ run_9_repetition_3,DONE,200,code-millenials,79,179.28,0,185300248.88,26638964.59
 run_10_repetition_3,DONE,200,code-millenials,63,129.863,0,140127260.119,23993573.601,0,67221336064.0,8589930496.0,1984631155.22,252059648.0,7222.379
 run_11_repetition_3,DONE,200,code-millenials,90,147.873,0,165624282.685,32263326.394,0,67221336064.0,8589930496.0,1984111410.094,252059648.0,8437.757
 run_12_repetition_3,DONE,200,code-millenials,53,192.697,0,224875528.396,49422918.402,0,67221336064.0,8589930496.0,1982115653.239,252059648.0,10028.413
-run_13_repetition_3,TODO,200,code-millenials,66, , , , , , , , , , 
+run_13_repetition_3,DONE,200,code-millenials,66,177.485,0,216526308.11,53144283.272,0,67221336064.0,8589930496.0,1980483650.808,252059648.0,9925.133
 run_14_repetition_3,TODO,200,code-millenials,52, , , , , , , , , , 
 run_15_repetition_3,TODO,200,code-millenials,16, , , , , , , , , , 
 run_0_repetition_4,TODO,200,speechless-codellama,4, , , , , , , , , , 
