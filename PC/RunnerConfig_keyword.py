@@ -22,7 +22,7 @@ class RunnerConfig:
 
     # ================================ USER SPECIFIC CONFIG ================================
     """The name of the experiment."""
-    name:                       str             = "keyword/results/1"
+    name:                       str             = "keyword/results/2"
 
     """The path in which Experiment Runner will create a folder with the name `self.name`, in order to store the
     results from this experiment. (Path does not need to exist - it will be created if necessary.)
@@ -60,15 +60,10 @@ class RunnerConfig:
         """Create and return the run_table model here. A run_table is a List (rows) of tuples (columns),
         representing each run performed"""
         sampling_factor = FactorModel("sampling", [200])
-        llm = FactorModel("llm", ['chatgpt', 'gpt-4', 'deepseek-coder'])
         llm = FactorModel("llm", ['speechless-codellama', 'code-millenials'])
         code = FactorModel("code", ['4', '61', '79', '63', '90', '53', '66', '52', '16'])
         self.run_table_model = RunTableModel(
             factors = [sampling_factor, llm, code],
-            exclude_variations = [
-                {llm: ['gpt-4'], code: ['4']},
-                {llm: ['deepseek-coder'], code: ['79']},
-            ],
             exclude_variations = [
                 {llm: ['speechless-codellama'], code: ['52', '61']},
             ],
