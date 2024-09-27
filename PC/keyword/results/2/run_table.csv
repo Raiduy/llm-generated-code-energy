@@ -1,7 +1,7 @@
 __run_id,__done,sampling,llm,code,Time,TOTAL_DRAM_ENERGY (J),TOTAL_PACKAGE_ENERGY (J),TOTAL_PP0_ENERGY (J),TOTAL_PP1_ENERGY (J),TOTAL_MEMORY,TOTAL_SWAP,AVG_USED_MEMORY,AVG_USED_SWAP,TOTAL_ENERGY (J)
 run_0_repetition_0,DONE,200,speechless-codellama,4,151.271,0,146243999.72,90078778.878,0,67221336064.0,8589930496.0,1960283598.016,252059648.0,8393.112
 run_1_repetition_0,DONE,200,speechless-codellama,79,174.487,0,176788011.999,110480803.835,0,67221336064.0,8589930496.0,1945254909.657,252059648.0,9458.929
-run_2_repetition_0,TODO,200,speechless-codellama,63, , , , , , , , , , 
+run_2_repetition_0,DONE,200,speechless-codellama,63,74.038,0,77926452.432,49165656.764,0,67221336064.0,8589930496.0,1946990558.968,252059648.0,4133.695
 run_3_repetition_0,TODO,200,speechless-codellama,90, , , , , , , , , , 
 run_4_repetition_0,TODO,200,speechless-codellama,53, , , , , , , , , , 
 run_5_repetition_0,TODO,200,speechless-codellama,66, , , , , , , , , , 
