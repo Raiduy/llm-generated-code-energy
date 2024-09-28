@@ -98,7 +98,7 @@ run_15_repetition_5,DONE,200,code-millenials,16,195.301,0,43553220.004,59236192.
 run_0_repetition_6,DONE,200,speechless-codellama,4,147.473,0,40001867.173,50479956.667,0,67221336064.0,8589930496.0,1958932419.031,252059648.0,8174.603
 run_1_repetition_6,DONE,200,speechless-codellama,79,187.091,0,59707042.805,71285835.232,0,67221336064.0,8589930496.0,1963082860.192,252059648.0,10149.286
 run_2_repetition_6,DONE,200,speechless-codellama,63,74.638,0,26736666.99,30804838.086,0,67221336064.0,8589930496.0,1962647748.608,252059648.0,4167.662
-run_3_repetition_6,TODO,200,speechless-codellama,90, , , , , , , , , , 
+run_3_repetition_6,DONE,200,speechless-codellama,90,143.871,0,56087389.097,62949277.841,0,67221336064.0,8589930496.0,1955808095.512,252059648.0,7979.069
 run_4_repetition_6,TODO,200,speechless-codellama,53, , , , , , , , , , 
 run_5_repetition_6,TODO,200,speechless-codellama,66, , , , , , , , , , 
 run_6_repetition_6,TODO,200,speechless-codellama,16, , , , , , , , , , 
