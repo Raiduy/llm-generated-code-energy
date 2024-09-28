@@ -122,7 +122,7 @@ run_7_repetition_7,DONE,200,code-millenials,4,196.295,0,9640793.862,240139549.33
 run_8_repetition_7,DONE,200,code-millenials,61,107.252,0,10034419.234,135279936.553,0,67221336064.0,8589930496.0,1949350915.807,252059648.0,5940.109
 run_9_repetition_7,DONE,200,code-millenials,79,173.486,0,23293961.186,224213164.791,0,67221336064.0,8589930496.0,1956079943.586,252059648.0,9511.77
 run_10_repetition_7,DONE,200,code-millenials,63,132.665,0,23737022.357,4916562.472,0,67221336064.0,8589930496.0,1959951687.988,252059648.0,7411.461
-run_11_repetition_7,TODO,200,code-millenials,90, , , , , , , , , , 
+run_11_repetition_7,DONE,200,code-millenials,90,152.076,0,33528688.592,7431601.579,0,67221336064.0,8589930496.0,1962595975.727,252059648.0,8432.315
 run_12_repetition_7,TODO,200,code-millenials,53, , , , , , , , , , 
 run_13_repetition_7,TODO,200,code-millenials,66, , , , , , , , , , 
 run_14_repetition_7,TODO,200,code-millenials,52, , , , , , , , , , 
