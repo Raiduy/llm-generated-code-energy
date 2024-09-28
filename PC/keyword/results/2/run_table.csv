@@ -90,7 +90,7 @@ run_7_repetition_5,DONE,200,code-millenials,4,201.295,0,230730494.356,192254347.
 run_8_repetition_5,DONE,200,code-millenials,61,119.462,0,142602968.128,3098919.537,0,67221336064.0,8589930496.0,1971979532.394,252059648.0,6192.848
 run_9_repetition_5,DONE,200,code-millenials,79,176.886,0,218246748.77,10434853.781,0,67221336064.0,8589930496.0,1975685494.465,252059648.0,9640.658
 run_10_repetition_5,DONE,200,code-millenials,63,157.476,0,201605361.845,15111456.408,0,67221336064.0,8589930496.0,1969902341.516,252059648.0,7897.563
-run_11_repetition_5,TODO,200,code-millenials,90, , , , , , , , , , 
+run_11_repetition_5,DONE,200,code-millenials,90,-1.0,0,54180401.463,19617389.948,0,67221336064.0,8589930496.0,1967197430.141,252059648.0,-1.0
 run_12_repetition_5,TODO,200,code-millenials,53, , , , , , , , , , 
 run_13_repetition_5,TODO,200,code-millenials,66, , , , , , , , , , 
 run_14_repetition_5,TODO,200,code-millenials,52, , , , , , , , , , 
