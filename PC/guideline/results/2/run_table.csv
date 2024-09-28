@@ -2,7 +2,7 @@ __run_id,__done,sampling,llm,code,Time,TOTAL_DRAM_ENERGY (J),TOTAL_PACKAGE_ENERG
 run_0_repetition_0,DONE,200,speechless-codellama,4,-1.0,0,92435632.353,72283870.038,0,67221336064.0,8589930496.0,2005574653.24,252059648.0,-1.0
 run_1_repetition_0,DONE,200,speechless-codellama,79,174.084,0,8353883.692,91574520.057,0,67221336064.0,8589930496.0,1980659712.0,252059648.0,9637.072
 run_2_repetition_0,DONE,200,speechless-codellama,63,74.239,0,6308480.293,41364887.464,0,67221336064.0,8589930496.0,1987946490.509,252059648.0,4174.883
-run_3_repetition_0,TODO,200,speechless-codellama,53, , , , , , , , , , 
+run_3_repetition_0,DONE,200,speechless-codellama,53,177.084,0,21597450.77,103659283.992,0,67221336064.0,8589930496.0,1985340781.962,252059648.0,9840.85
 run_4_repetition_0,TODO,200,speechless-codellama,66, , , , , , , , , , 
 run_5_repetition_0,TODO,200,speechless-codellama,16, , , , , , , , , , 
 run_6_repetition_0,TODO,200,code-millenials,4, , , , , , , , , , 
