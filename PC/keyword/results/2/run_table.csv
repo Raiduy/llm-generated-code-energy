@@ -202,7 +202,7 @@ run_7_repetition_12,DONE,200,code-millenials,4,194.499,0,242592403.315,73119808.
 run_8_repetition_12,DONE,200,code-millenials,61,108.451,0,140302691.382,44732127.826,0,67221336064.0,8589930496.0,1967070411.294,252059648.0,6027.658
 run_9_repetition_12,DONE,200,code-millenials,79,-1.0,0,24309719.811,93014240.687,0,67221336064.0,8589930496.0,1975697663.264,252059648.0,-1.0
 run_10_repetition_12,DONE,200,code-millenials,63,158.48,0,11095754.632,76816349.361,0,67221336064.0,8589930496.0,1970947404.736,252059648.0,7944.801
-run_11_repetition_12,TODO,200,code-millenials,90, , , , , , , , , , 
+run_11_repetition_12,DONE,200,code-millenials,90,180.685,0,20759360.32,94008897.679,0,67221336064.0,8589930496.0,1977902938.802,252059648.0,9146.979
 run_12_repetition_12,TODO,200,code-millenials,53, , , , , , , , , , 
 run_13_repetition_12,TODO,200,code-millenials,66, , , , , , , , , , 
 run_14_repetition_12,TODO,200,code-millenials,52, , , , , , , , , , 
