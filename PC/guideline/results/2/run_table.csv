@@ -166,7 +166,7 @@ run_9_repetition_11,DONE,200,code-millenials,63,-1.0,0,88777167.799,37780435.647
 run_10_repetition_11,DONE,200,code-millenials,53,185.891,0,8449317.222,60742452.219,0,67221336064.0,8589930496.0,1979662824.352,252059648.0,10286.946
 run_11_repetition_11,DONE,200,code-millenials,66,177.483,0,17470054.538,65682352.406,0,67221336064.0,8589930496.0,1982845190.623,252059648.0,10000.638
 run_12_repetition_11,DONE,200,code-millenials,52,182.492,0,27722019.607,75533583.463,0,67221336064.0,8589930496.0,1994518864.105,252059648.0,10512.784
-run_13_repetition_11,TODO,200,code-millenials,16, , , , , , , , , , 
+run_13_repetition_11,DONE,200,code-millenials,16,228.116,0,47415941.666,104712795.123,0,67221336064.0,8589930496.0,2086770691.587,252059648.0,10927.414
 run_0_repetition_12,TODO,200,speechless-codellama,4, , , , , , , , , , 
 run_1_repetition_12,TODO,200,speechless-codellama,79, , , , , , , , , , 
 run_2_repetition_12,TODO,200,speechless-codellama,63, , , , , , , , , , 
