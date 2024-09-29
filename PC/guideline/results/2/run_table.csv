@@ -142,7 +142,7 @@ run_13_repetition_9,DONE,200,code-millenials,16,195.698,0,36322199.108,134966188
 run_0_repetition_10,DONE,200,speechless-codellama,4,150.074,0,35151859.672,109446384.629,0,67221336064.0,8589930496.0,1982283895.83,252059648.0,8325.58
 run_1_repetition_10,DONE,200,speechless-codellama,79,178.691,0,50333674.971,137150759.598,0,67221336064.0,8589930496.0,1986034485.488,252059648.0,9813.312
 run_2_repetition_10,DONE,200,speechless-codellama,63,74.236,0,23735916.945,59369682.68,0,67221336064.0,8589930496.0,1986549249.373,252059648.0,4129.271
-run_3_repetition_10,TODO,200,speechless-codellama,53, , , , , , , , , , 
+run_3_repetition_10,DONE,200,speechless-codellama,53,196.101,0,70227504.069,162527065.516,0,67221336064.0,8589930496.0,1987746496.912,252059648.0,10769.909
 run_4_repetition_10,TODO,200,speechless-codellama,66, , , , , , , , , , 
 run_5_repetition_10,TODO,200,speechless-codellama,16, , , , , , , , , , 
 run_6_repetition_10,TODO,200,code-millenials,4, , , , , , , , , , 
