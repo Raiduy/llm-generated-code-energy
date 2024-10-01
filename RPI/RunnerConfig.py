@@ -60,6 +60,8 @@ class RunnerConfig:
     def create_run_table_model(self) -> RunTableModel:
         """Create and return the run_table model here. A run_table is a List (rows) of tuples (columns),
         representing each run performed"""
+
+        #llm = FactorModel("llm", ['code-millenials-34b_temp_0.0', 'speechless-codellama-34b_temp_0.0', 'wizardcoder-33b-1.1_temp_0.0'])
         llm = FactorModel("llm", ['chatgpt_temp_0.0', 'gpt-4_temp_0.0', 'deepseek-coder-33b-instruct_temp_0.0'])
         code = FactorModel("code", ['4', '61', '79', '63', '90', '53', '66', '52', '16'])
         self.run_table_model = RunTableModel(
@@ -131,7 +133,6 @@ class RunnerConfig:
         """Perform any activity here required for stopping measurements."""
         output.console_log("Stopping measurement on the dev computer...")
 
-
         self.profiler.kill()
 
         res = requests.post(f'http://{SERVER_HOST}/stop', json={}, headers={'Content-Type': 'application/json'})
@@ -158,6 +159,10 @@ class RunnerConfig:
         Invoked only once during the lifetime of the program."""
 
         output.console_log("Config.after_experiment() called!")
+
+        git_log = open(f'./{self.name}/git_log.log', 'a')
+        subprocess.call('git add --all && git commit -m "Experiment finished" && git push',
+                        shell=True, stdout=git_log, stderr=git_log)
 
     # ================================ DO NOT ALTER BELOW THIS LINE ================================
     experiment_path:            Path             = None
