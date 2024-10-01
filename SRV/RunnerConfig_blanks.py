@@ -22,7 +22,7 @@ class RunnerConfig:
 
     # ================================ USER SPECIFIC CONFIG ================================
     """The name of the experiment."""
-    name:                       str             = "blank_experiment"
+    name:                       str             = "blanks/results/1"
 
     """The path in which Experiment Runner will create a folder with the name `self.name`, in order to store the
     results from this experiment. (Path does not need to exist - it will be created if necessary.)
@@ -101,7 +101,7 @@ class RunnerConfig:
                         --interval {sampling_interval} \
                         --output {context.run_dir / "energibridge.csv"} \
                         --summary \
-                        python3 ./blank_code/{code}.py'
+                        python3 ./blanks/code/{code}.py'
 
         #time.sleep(1) # allow the process to run a little before measuring
         energibridge_log = open(f'{context.run_dir}/energibridge.log', 'w')
