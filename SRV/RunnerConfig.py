@@ -22,7 +22,7 @@ class RunnerConfig:
 
     # ================================ USER SPECIFIC CONFIG ================================
     """The name of the experiment."""
-    name:                       str             = "2"
+    name:                       str             = "1"
 
     """The path in which Experiment Runner will create a folder with the name `self.name`, in order to store the
     results from this experiment. (Path does not need to exist - it will be created if necessary.)
@@ -60,12 +60,12 @@ class RunnerConfig:
         """Create and return the run_table model here. A run_table is a List (rows) of tuples (columns),
         representing each run performed"""
         sampling_factor = FactorModel("sampling", [200])
-        llm = FactorModel("llm", ['code-millenials-34b_temp_0.0', 'speechless-codellama-34b_temp_0.0', 'wizardcoder-33b-1.1_temp_0.0'])
+        llm = FactorModel("llm", ['chatgpt_temp_0.0', 'gpt-4_temp_0.0', 'deepseek-coder-33b-instruct_temp_0.0'])
         code = FactorModel("code", ['4', '61', '79', '63', '90', '53', '66', '52', '16'])
         self.run_table_model = RunTableModel(
             factors = [sampling_factor, llm, code],
             data_columns=['Time', 'TOTAL_DRAM_ENERGY (J)', 'TOTAL_PACKAGE_ENERGY (J)',
-                          'TOTAL_PP0_ENERGY (J)', 'TOTAL_PP1_ENERGY (J)', 
+                          'TOTAL_PP0_ENERGY (J)', 
                           'TOTAL_MEMORY', 'TOTAL_SWAP',
                           'AVG_USED_MEMORY', 'AVG_USED_SWAP', 
                           'TOTAL_ENERGY (J)'],
@@ -82,7 +82,7 @@ class RunnerConfig:
         """Perform any activity required before starting a run.
         No context is available here as the run is not yet active (BEFORE RUN)"""
         
-        git_log = open(f'./experiments/{self.name}/git_log.log', 'a')
+        git_log = open(f'./{self.name}/git_log.log', 'a')
         subprocess.call('git add --all && git commit -m "Experiment checkpoint" && git push',
                         shell=True, stdout=git_log, stderr=git_log)
 
@@ -103,7 +103,7 @@ class RunnerConfig:
                         --interval {sampling_interval} \
                         --output {context.run_dir / "energibridge.csv"} \
                         --summary \
-                        python3 ./SRV/code/{llm}/{code}.py'
+                        python3 ./code/{llm}/{code}.py'
 
         #time.sleep(1) # allow the process to run a little before measuring
         energibridge_log = open(f'{context.run_dir}/energibridge.log', 'w')
@@ -155,7 +155,6 @@ class RunnerConfig:
                 'TOTAL_DRAM_ENERGY (J)'       : round(df['DRAM_ENERGY (J)'].sum(), 3),
                 'TOTAL_PACKAGE_ENERGY (J)'    : round(df['PACKAGE_ENERGY (J)'].sum(), 3),
                 'TOTAL_PP0_ENERGY (J)'        : round(df['PP0_ENERGY (J)'].sum(), 3),
-                'TOTAL_PP1_ENERGY (J)'        : round(df['PP1_ENERGY (J)'].sum(), 3),
                 'TOTAL_MEMORY'                : round(df['TOTAL_MEMORY'].mean() if df['TOTAL_MEMORY'].std() == 0 else -1, 3),
                 'TOTAL_SWAP'                  : round(df['TOTAL_SWAP'].mean() if df['TOTAL_SWAP'].std() == 0 else -1, 3),
                 'AVG_USED_MEMORY'             : round(df['USED_MEMORY'].mean(), 3),
