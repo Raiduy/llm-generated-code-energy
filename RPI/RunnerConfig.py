@@ -134,7 +134,6 @@ class RunnerConfig:
         output.console_log("Stopping measurement on the dev computer...")
 
         self.profiler.kill()
-
         res = requests.post(f'http://{SERVER_HOST}/stop', json={}, headers={'Content-Type': 'application/json'})
         output.console_log(res.text)
 
@@ -157,6 +156,11 @@ class RunnerConfig:
     def after_experiment(self) -> None:
         """Perform any activity required after stopping the experiment here
         Invoked only once during the lifetime of the program."""
+
+        git_log = open(f'./experiments/{self.name}/git_log.log', 'a')
+        subprocess.call('git add --all && git commit -m "Experiment checkpoint" && git push',
+                        shell=True, stdout=git_log, stderr=git_log)
+
 
         output.console_log("Config.after_experiment() called!")
 
