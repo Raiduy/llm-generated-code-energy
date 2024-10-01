@@ -23,12 +23,12 @@ class RunnerConfig:
 
     # ================================ USER SPECIFIC CONFIG ================================
     """The name of the experiment."""
-    name:                       str             = "blank_experiment"
+    name:                       str             = "blanks/results/1"
 
     """The path in which Experiment Runner will create a folder with the name `self.name`, in order to store the
     results from this experiment. (Path does not need to exist - it will be created if necessary.)
     Output path defaults to the config file's path, inside the folder 'experiments'"""
-    results_output_path:        Path            = ROOT_DIR / 'experiments'
+    results_output_path:        Path            = ROOT_DIR
 
     """Experiment operation type. Unless you manually want to initiate each run, use `OperationType.AUTO`."""
     operation_type:             OperationType   = OperationType.AUTO
@@ -87,7 +87,7 @@ class RunnerConfig:
 
         output.console_log("Config.before_run() called!")
 
-        git_log = open(f'./experiments/{self.name}/git_log.log', 'a')
+        git_log = open(f'./{self.name}/git_log.log', 'a')
         subprocess.call('git add --all && git commit -m "Experiment checkpoint" && git push',
                         shell=True, stdout=git_log, stderr=git_log)
 
@@ -100,7 +100,7 @@ class RunnerConfig:
         
         code = context.run_variation['code']
 
-        profiler_cmd = f'python3 ./blanks/{code}.py'
+        profiler_cmd = f'python3 ./blanks/code/{code}.py'
 
         #time.sleep(1) # allow the process to run a little before measuring
         self.target = subprocess.Popen(shlex.split(profiler_cmd))
@@ -162,7 +162,7 @@ class RunnerConfig:
         """Perform any activity required after stopping the experiment here
         Invoked only once during the lifetime of the program."""
 
-        git_log = open(f'./experiments{self.name}/git_log.log', 'a')
+        git_log = open(f'./{self.name}/git_log.log', 'a')
         subprocess.call('git add --all && git commit -m "Experiment checkpoint" && git push',
                         shell=True, stdout=git_log, stderr=git_log)
         output.console_log("Config.after_experiment() called!")
