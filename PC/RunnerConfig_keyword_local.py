@@ -36,16 +36,7 @@ class RunnerConfig:
     This can be essential to accommodate for cooldown periods on some systems."""
     time_between_runs_in_ms:    int             = 60000
     
-    
-    load_dotenv()
-
-    NI_1 = os.getenv('NI1')
-    USERNAME = os.getenv('USERNAME')
-    PASSWORD = os.getenv('PASSWORD')
-
-    ssh_client=paramiko.SSHClient()
-    ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-    ssh_client.connect(hostname=NI_1, username=USERNAME, password=PASSWORD)
+    global ssh_client
 
 
     # Dynamic configurations can be one-time satisfied here before the program takes the config as-is
@@ -93,7 +84,18 @@ class RunnerConfig:
     def before_experiment(self) -> None:
         """Perform any activity required before starting the experiment here
         Invoked only once during the lifetime of the program."""
-        pass
+
+        load_dotenv()
+
+        NI_1 = os.getenv('NI1')
+        USERNAME = os.getenv('USERNAME')
+        PASSWORD = os.getenv('PASSWORD')
+
+        ssh_client=paramiko.SSHClient()
+        ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+        ssh_client.connect(hostname=NI_1, username=USERNAME, password=PASSWORD)
+
+
 
     def before_run(self) -> None:
         """Perform any activity required before starting a run.
