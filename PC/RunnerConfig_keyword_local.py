@@ -90,10 +90,10 @@ class RunnerConfig:
         USERNAME = os.getenv('USERNAME')
         PASSWORD = os.getenv('PASSWORD')
 
-        ssh_client=paramiko.SSHClient()
-        ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-        ssh_client.connect(hostname=NI_1, username=USERNAME, password=PASSWORD)
-        stdin, stdout, stderr = ssh_client.exec_command('sudo -S energibridge sleep 3')
+        self.ssh_client=paramiko.SSHClient()
+        self.ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+        self.ssh_client.connect(hostname=NI_1, username=USERNAME, password=PASSWORD)
+        stdin, stdout, stderr = self.ssh_client.exec_command('sudo -S energibridge sleep 3')
         stdin.write(f'{PASSWORD}\n')
         print(stdout.readlines())
 
@@ -130,7 +130,7 @@ class RunnerConfig:
         #energibridge_log = open(f'{context.run_dir}/energibridge.log', 'w')
         #self.profiler = subprocess.Popen(shlex.split(profiler_cmd), stdout=energibridge_log)
 
-        stdin, self.profiler, std_err = ssh_client.exec_command(profiler_cmd)
+        stdin, self.profiler, std_err = self.ssh_client.exec_command(profiler_cmd)
         stdin.write(f'{PASSWORD}\n')
 
     def interact(self, context: RunnerContext) -> None:
