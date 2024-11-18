@@ -131,7 +131,7 @@ class RunnerConfig:
         #self.profiler = subprocess.Popen(shlex.split(profiler_cmd), stdout=energibridge_log)
 
         stdin, self.profiler, std_err = self.ssh_client.exec_command(profiler_cmd)
-        stdin.write(f'{PASSWORD}\n')
+        #stdin.write(f'{PASSWORD}\n')
 
     def interact(self, context: RunnerContext) -> None:
         """Perform any interaction with the running target system here, or block here until the target finishes."""
