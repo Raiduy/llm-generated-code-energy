@@ -16,6 +16,7 @@ import pandas as pd
 import paramiko
 import subprocess
 import shlex
+import time
 
 class RunnerConfig:
     ROOT_DIR = Path(dirname(realpath(__file__)))
@@ -34,9 +35,9 @@ class RunnerConfig:
 
     """The time Experiment Runner will wait after a run completes.
     This can be essential to accommodate for cooldown periods on some systems."""
-    time_between_runs_in_ms:    int             = 60000
+    time_between_runs_in_ms:    int             = 3000
     
-    global ssh_client
+
 
     # Dynamic configurations can be one-time satisfied here before the program takes the config as-is
     # e.g. Setting some variable based on some criteria
@@ -55,64 +56,70 @@ class RunnerConfig:
             (RunnerEvents.AFTER_EXPERIMENT , self.after_experiment )
         ])
         self.run_table_model = None  # Initialized later
+
+        load_dotenv()
+        self.NI_1       = os.getenv('NI1')
+        self.USERNAME   = os.getenv('USERNAME')
+        self.PASSWORD   = os.getenv('PASSWORD')
+        self.PCPATH     = os.getenv('PCPATH')
+        self.PCOUTPATH  = os.getenv('PCOUTPATH')
+        
+        self.ssh_client = None
+
         output.console_log("Custom config loaded")
 
     def create_run_table_model(self) -> RunTableModel:
         """Create and return the run_table model here. A run_table is a List (rows) of tuples (columns),
         representing each run performed"""
         sampling_factor = FactorModel("sampling", [200])
-        llm = FactorModel("llm", ['speechless-codellama', 'code-millenials'])
+        llm = FactorModel("llm", ['speechless-codellama'])#, 'code-millenials'])
         #llm = FactorModel("llm", ['chatgpt', 'gpt-4', 'deepseek-coder'])
-        code = FactorModel("code", ['4', '61', '79', '63', '90', '53', '66', '52', '16'])
+        code = FactorModel("code", ['4'])#, '61', '79', '63', '90', '53', '66', '52', '16'])
         self.run_table_model = RunTableModel(
             factors = [sampling_factor, llm, code],
             exclude_variations = [
-                {llm: ['speechless-codellama'], code: ['52', '61']},
+                #{llm: ['speechless-codellama'], code: ['52', '61']},
                 #{llm: ['gpt-4'], code: ['4']},
                 #{llm: ['deepseek-coder'], code: ['79']},
             ],
-            data_columns=['Time', 'TOTAL_DRAM_ENERGY (J)', 'TOTAL_PACKAGE_ENERGY (J)',
-                          'TOTAL_PP0_ENERGY (J)', 'TOTAL_PP1_ENERGY (J)', 
-                          'TOTAL_MEMORY', 'TOTAL_SWAP',
+            data_columns=['Time (s)', 'AVG_MAX_CPU (%)',
                           'AVG_USED_MEMORY', 'AVG_USED_SWAP', 
-                          'TOTAL_ENERGY (J)'],
-            repetitions=21,
+                          'PP0_ENERGY (J)', 'PP1_ENERGY (J)', 
+                          'DRAM_ENERGY (J)', 'PACKAGE_ENERGY (J)'],
+            repetitions=1,
         )
         return self.run_table_model
 
     def before_experiment(self) -> None:
         """Perform any activity required before starting the experiment here
         Invoked only once during the lifetime of the program."""
-
-        load_dotenv()
-
-        NI_1 = os.getenv('NI1')
-        USERNAME = os.getenv('USERNAME')
-        PASSWORD = os.getenv('PASSWORD')
-
-        self.ssh_client=paramiko.SSHClient()
-        self.ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-        self.ssh_client.connect(hostname=NI_1, username=USERNAME, password=PASSWORD)
-        stdin, stdout, stderr = self.ssh_client.exec_command('sudo -S energibridge sleep 3')
-        stdin.write(f'{PASSWORD}\n')
-        print(stdout.readlines())
-
-
+        pass
 
     def before_run(self) -> None:
         """Perform any activity required before starting a run.
         No context is available here as the run is not yet active (BEFORE RUN)"""
+        pass
         
-        git_log = open(f'./{self.name}/git_log.log', 'a')
-        subprocess.call('git add --all && git commit -m "Experiment checkpoint" && git push',
-                        shell=True, stdout=git_log, stderr=git_log)
-
-
     def start_run(self, context: RunnerContext) -> None:
         """Perform any activity required for starting the run here.
         For example, starting the target system to measure.
         Activities after starting the run should also be performed here."""
-        pass
+        self.ssh_client=paramiko.SSHClient()
+        self.ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+        self.ssh_client.connect(hostname=self.NI_1, username=self.USERNAME, 
+                                password=self.PASSWORD)
+        print('Connection made!')
+        
+        self.remote_output_folder = f'{self.PCOUTPATH}/{self.name}/{context.run_variation["__run_id"]}'
+        _, out, err = self.ssh_client.exec_command(f'mkdir -p {self.remote_output_folder}')
+        
+        exit_status = out.channel.recv_exit_status()          # Blocking call
+        if exit_status == 0:
+            print("Output folder created")
+        else:
+            print(err.readlines())
+            print("Error", exit_status)
+
 
     def start_measurement(self, context: RunnerContext) -> None:
         """Perform any activity required for starting measurements."""
@@ -120,18 +127,21 @@ class RunnerConfig:
         llm = context.run_variation['llm']
         code = context.run_variation['code']
 
-        profiler_cmd = f'sudo -S energibridge --summary sleep 3'#\
-                        #--interval {sampling_interval} \
-                        #--output {context.run_dir / "energibridge.csv"} \
-                        #--summary \
-                        #python3 ./keyword/code/{llm}/{code}.py'
+        print(f'{self.remote_output_folder}')
+        print(f'{self.PCPATH}/keyword/code/{llm}/{code}.py')
+
+        profiler_cmd = f'sudo -S energibridge \
+                        --interval {sampling_interval} \
+                        --output {self.remote_output_folder}/energibridge.csv \
+                        --summary sleep 10'#\
+                        #python3 {self.PCPATH}/keyword/code/{llm}/{code}.py'
 
         #time.sleep(1) # allow the process to run a little before measuring
         #energibridge_log = open(f'{context.run_dir}/energibridge.log', 'w')
         #self.profiler = subprocess.Popen(shlex.split(profiler_cmd), stdout=energibridge_log)
 
-        stdin, self.profiler, std_err = self.ssh_client.exec_command(profiler_cmd)
-        #stdin.write(f'{PASSWORD}\n')
+        self.profiler = self.ssh_client.exec_command(profiler_cmd)
+        self.profiler[0].write(f'{self.PASSWORD}\n') # stdin
 
     def interact(self, context: RunnerContext) -> None:
         """Perform any interaction with the running target system here, or block here until the target finishes."""
@@ -142,57 +152,69 @@ class RunnerConfig:
 
     def stop_measurement(self, context: RunnerContext) -> None:
         """Perform any activity here required for stopping measurements."""
-        self.profiler.wait()
-        print(self.profiler.readlines())
+        print(self.profiler[1].readlines()) # stdout
+        exit_status = self.profiler[1].channel.recv_exit_status()          # Blocking call
+        if exit_status == 0:
+            print('Code executed')
+        else:
+            print(self.profiler[2].readlines()) # stderr
+            print('Error', exit_status)
+
+
 
     def stop_run(self, context: RunnerContext) -> None:
         """Perform any activity here required for stopping the run.
         Activities after stopping the run should also be performed here."""
+        print('Pulling remote file...')
+        time.sleep(3)
+        ftp_client=self.ssh_client.open_sftp()
+        try:
+            ftp_client.get(f'{self.remote_output_folder}/energibridge.csv',f'{context.run_dir / "energibridge.csv"}')
+            print('SUCCESS pulling file')
+        except FileNotFoundError as err:
+            print(f'FAILED to pull file {self.remote_output_folder}/energibridge.csv not found!')
+            _, stdout, _ = self.ssh_client.exec_command(f'ls {self.remote_output_folder}')
+            print(f'Folder contents of remote location are:\n{stdout.readlines()}')
+
+        ftp_client.close()
+        self.ssh_client.close()
+        print("Connection closed")
         pass
     
     def populate_run_data(self, context: RunnerContext) -> Optional[Dict[str, Any]]:
         """Parse and process any measurement data here.
         You can also store the raw measurement data under `context.run_dir`
         Returns a dictionary with keys `self.run_table_model.data_columns` and their values populated"""
-
         # energibridge.csv - Power consumption
+        #['Time', 'AVG_USED_MEMORY', 'AVG_USED_SWAP', 
+        #                  'PP0_ENERGY (J)', 'PP1_ENERGY (J)', 
+        #                  'DRAM_ENERGY (J)', 'PACKAGE_ENERGY (J)'],
+
         df = pd.read_csv(context.run_dir / "energibridge.csv")
-        with open(context.run_dir / "energibridge.log", 'r') as reader:
-            contents = reader.read()
-        
-        time = -1
-        energy = -1
 
-        if "joules" in contents:
-            time = contents.split('for ')[1]
-            time = time.split(' sec')[0]
-            energy = contents.split('joules: ')[1]
-            energy = energy.split(' for ')[0]
+        target_cols = []
+        for col in df.columns:
+            if 'CPU_USAGE_' in col:
+                target_cols.append(col)
 
-        total_time = float(time)
-        total_energy = float(energy)
-        
+        df['MAX_CPU_USAGE'] = df[target_cols].max(axis=1)
+
         run_data = {
-                'Time'                        : round(total_time, 3),
-                'TOTAL_DRAM_ENERGY (J)'       : round(df['DRAM_ENERGY (J)'].sum(), 3),
-                'TOTAL_PACKAGE_ENERGY (J)'    : round(df['PACKAGE_ENERGY (J)'].sum(), 3),
-                'TOTAL_PP0_ENERGY (J)'        : round(df['PP0_ENERGY (J)'].sum(), 3),
-                'TOTAL_PP1_ENERGY (J)'        : round(df['PP1_ENERGY (J)'].sum(), 3),
-                'TOTAL_MEMORY'                : round(df['TOTAL_MEMORY'].mean() if df['TOTAL_MEMORY'].std() == 0 else -1, 3),
-                'TOTAL_SWAP'                  : round(df['TOTAL_SWAP'].mean() if df['TOTAL_SWAP'].std() == 0 else -1, 3),
-                'AVG_USED_MEMORY'             : round(df['USED_MEMORY'].mean(), 3),
-                'AVG_USED_SWAP'               : round(df['USED_SWAP'].mean(), 3),
-                'TOTAL_ENERGY (J)'            : round(total_energy, 3),
+                'Time (s)'            : round((df['Time'].iloc[-1] - df['Time'].iloc[0])/1000, 3),
+                'AVG_MAX_CPU (%)'     : round(df['MAX_CPU_USAGE'].mean(), 3),
+                'AVG_USED_MEMORY'     : round(df['USED_MEMORY'].mean(), 3),
+                'AVG_USED_SWAP'       : round(df['USED_SWAP'].mean(), 3),
+                'PP0_ENERGY (J)'      : round(df['PP0_ENERGY (J)'].iloc[-1] - df['PP0_ENERGY (J)'].iloc[0], 3),
+                'PP1_ENERGY (J)'      : round(df['PP1_ENERGY (J)'].iloc[-1] - df['PP1_ENERGY (J)'].iloc[0], 3),
+                'DRAM_ENERGY (J)'     : round(df['DRAM_ENERGY (J)'].iloc[-1] - df['DRAM_ENERGY (J)'].iloc[0], 3),
+                'PACKAGE_ENERGY (J)'  : round(df['PACKAGE_ENERGY (J)'].iloc[-1] - df['PACKAGE_ENERGY (J)'].iloc[0], 3),
         }
         return run_data
 
     def after_experiment(self) -> None:
         """Perform any activity required after stopping the experiment here
         Invoked only once during the lifetime of the program."""
-        
-        git_log = open(f'./{self.name}/git_log.log', 'a')
-        subprocess.call('git add --all && git commit -m "Experiment finished" && git push',
-                        shell=True, stdout=git_log, stderr=git_log)
+        pass
 
     # ================================ DO NOT ALTER BELOW THIS LINE ================================
     experiment_path:            Path             = None
