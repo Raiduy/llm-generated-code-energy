@@ -33,7 +33,7 @@ class RunnerConfig:
 
     """The time Experiment Runner will wait after a run completes.
     This can be essential to accommodate for cooldown periods on some systems."""
-    time_between_runs_in_ms:    int             = 3000
+    time_between_runs_in_ms:    int             = 60000
     
 
 
@@ -58,7 +58,7 @@ class RunnerConfig:
         load_dotenv()
         parallel_id = self.name.split('/')[2]
         print('PLL ID:', parallel_id)
-        self.TARGET_SYSTEM  = os.getenv(f'NI{parallel_id}')
+        self.TARGET_SYSTEM  = os.getenv(f'SYS{parallel_id}')
         self.USERNAME       = os.getenv('USERNAME')
         self.PASSWORD       = os.getenv('PASSWORD')
         self.CODES_PATH     = os.getenv('CODES_PATH')
@@ -78,11 +78,10 @@ class RunnerConfig:
         code = FactorModel("code", ['16', '4', '52', '53', '61', '63', '66', '79', '90'])
         self.run_table_model = RunTableModel(
             factors = [sampling_factor, llm, code],
-            data_columns=['Time', 'TOTAL_DRAM_ENERGY (J)', 'TOTAL_PACKAGE_ENERGY (J)',
-                          'TOTAL_PP0_ENERGY (J)', 'TOTAL_PP1_ENERGY (J)', 
-                          'TOTAL_MEMORY', 'TOTAL_SWAP',
+            data_columns=['Time (s)', 'AVG_MAX_CPU (%)', 
                           'AVG_USED_MEMORY', 'AVG_USED_SWAP', 
-                          'TOTAL_ENERGY (J)'],
+                          'PP0_ENERGY (J)', 'PP1_ENERGY (J)', 
+                          'DRAM_ENERGY (J)', 'PACKAGE_ENERGY (J)'],
             repetitions=21,
         )
         return self.run_table_model
@@ -153,7 +152,6 @@ class RunnerConfig:
         else:
             print('Error', exit_status)
             print(self.profiler[2].readlines()) # stderr
-
 
 
     def stop_run(self, context: RunnerContext) -> None:

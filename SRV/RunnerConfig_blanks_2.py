@@ -79,7 +79,7 @@ class RunnerConfig:
             factors = [sampling_factor, code],
             data_columns=['Time (s)', 'AVG_MAX_CPU (%)', 
                           'AVG_USED_MEMORY', 'AVG_USED_SWAP', 
-                          'PP0_ENERGY (J)', 'PP1_ENERGY (J)', 
+                          'PP0_ENERGY (J)', 
                           'DRAM_ENERGY (J)', 'PACKAGE_ENERGY (J)'],
             repetitions=21,
         )
@@ -194,7 +194,6 @@ class RunnerConfig:
                 'AVG_USED_MEMORY'     : round(df['USED_MEMORY'].mean(), 3),
                 'AVG_USED_SWAP'       : round(df['USED_SWAP'].mean(), 3),
                 'PP0_ENERGY (J)'      : round(df['PP0_ENERGY (J)'].iloc[-1] - df['PP0_ENERGY (J)'].iloc[0], 3),
-                'PP1_ENERGY (J)'      : round(df['PP1_ENERGY (J)'].iloc[-1] - df['PP1_ENERGY (J)'].iloc[0], 3),
                 'DRAM_ENERGY (J)'     : round(df['DRAM_ENERGY (J)'].iloc[-1] - df['DRAM_ENERGY (J)'].iloc[0], 3),
                 'PACKAGE_ENERGY (J)'  : round(df['PACKAGE_ENERGY (J)'].iloc[-1] - df['PACKAGE_ENERGY (J)'].iloc[0], 3),
         }

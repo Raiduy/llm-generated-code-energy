@@ -6,23 +6,22 @@ from ConfigValidator.Config.Models.RunnerContext import RunnerContext
 from ConfigValidator.Config.Models.OperationType import OperationType
 from ProgressManager.Output.OutputProcedure import OutputProcedure as output
 
+from dotenv import load_dotenv
 from typing import Dict, List, Any, Optional
 from pathlib import Path
 from os.path import dirname, realpath
 
 import os
-import signal
 import pandas as pd
+import paramiko
 import time
-import subprocess
-import shlex
 
 class RunnerConfig:
     ROOT_DIR = Path(dirname(realpath(__file__)))
 
     # ================================ USER SPECIFIC CONFIG ================================
     """The name of the experiment."""
-    name:                       str             = "1"
+    name:                       str             = "few-shot/results/1"
 
     """The path in which Experiment Runner will create a folder with the name `self.name`, in order to store the
     results from this experiment. (Path does not need to exist - it will be created if necessary.)
@@ -35,6 +34,7 @@ class RunnerConfig:
     """The time Experiment Runner will wait after a run completes.
     This can be essential to accommodate for cooldown periods on some systems."""
     time_between_runs_in_ms:    int             = 60000
+    
 
 
     # Dynamic configurations can be one-time satisfied here before the program takes the config as-is
@@ -54,21 +54,42 @@ class RunnerConfig:
             (RunnerEvents.AFTER_EXPERIMENT , self.after_experiment )
         ])
         self.run_table_model = None  # Initialized later
+
+        load_dotenv()
+        parallel_id = self.name.split('/')[2]
+        print('PLL ID:', parallel_id)
+        self.TARGET_SYSTEM  = os.getenv(f'SYS{parallel_id}')
+        self.USERNAME       = os.getenv('USERNAME')
+        self.PASSWORD       = os.getenv('PASSWORD')
+        self.CODES_PATH     = os.getenv('CODES_PATH')
+        self.OUT_PATH       = os.getenv('OUT_PATH')
+        
+        self.ssh_client = None
+
         output.console_log("Custom config loaded")
 
     def create_run_table_model(self) -> RunTableModel:
         """Create and return the run_table model here. A run_table is a List (rows) of tuples (columns),
         representing each run performed"""
         sampling_factor = FactorModel("sampling", [200])
-        llm = FactorModel("llm", ['chatgpt_temp_0.0', 'gpt-4_temp_0.0', 'deepseek-coder-33b-instruct_temp_0.0'])
-        code = FactorModel("code", ['4', '61', '79', '63', '90', '53', '66', '52', '16'])
+
+        llm = FactorModel("llm", ['wizardcoder', 'code-millenials', 'deepseek-coder'])
+        #llm = FactorModel("llm", ['gpt-4', 'chatgpt', 'speechless-codellama'])
+        code = FactorModel("code", ['16', '4', '52', '53', '61', '63', '66', '79', '90'])
         self.run_table_model = RunTableModel(
             factors = [sampling_factor, llm, code],
-            data_columns=['Time', 'TOTAL_DRAM_ENERGY (J)', 'TOTAL_PACKAGE_ENERGY (J)',
-                          'TOTAL_PP0_ENERGY (J)', 
-                          'TOTAL_MEMORY', 'TOTAL_SWAP',
+            exclude_variations = [
+                {llm: ['wizardcoder'], code: ['16', '52', '63']},
+                {llm: ['code-millenials'], code: ['4']},
+                {llm: ['deepseek-coder'], code: ['79']},
+                {llm: ['gpt-4'], code: []},
+                {llm: ['chatgpt'], code: []},
+                {llm: ['speechless-codellama'], code: ['90']},
+            ],
+            data_columns=['Time (s)', 'AVG_MAX_CPU (%)', 
                           'AVG_USED_MEMORY', 'AVG_USED_SWAP', 
-                          'TOTAL_ENERGY (J)'],
+                          'PP0_ENERGY (J)', 
+                          'DRAM_ENERGY (J)', 'PACKAGE_ENERGY (J)'],
             repetitions=21,
         )
         return self.run_table_model
@@ -78,90 +99,115 @@ class RunnerConfig:
         Invoked only once during the lifetime of the program."""
         pass
 
+
     def before_run(self) -> None:
         """Perform any activity required before starting a run.
         No context is available here as the run is not yet active (BEFORE RUN)"""
+        pass
         
-        git_log = open(f'./{self.name}/git_log.log', 'a')
-        subprocess.call('git add --all && git commit -m "Experiment checkpoint" && git push',
-                        shell=True, stdout=git_log, stderr=git_log)
-
 
     def start_run(self, context: RunnerContext) -> None:
         """Perform any activity required for starting the run here.
         For example, starting the target system to measure.
         Activities after starting the run should also be performed here."""
-        pass
+        self.ssh_client=paramiko.SSHClient()
+        self.ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+        self.ssh_client.connect(hostname=self.TARGET_SYSTEM, username=self.USERNAME, 
+                                password=self.PASSWORD)
+        print('Connection made!')
+        
+        self.remote_output_folder = f'{self.OUT_PATH}/{self.name}/{context.run_variation["__run_id"]}'
+        _, out, err = self.ssh_client.exec_command(f'mkdir -p {self.remote_output_folder}')
+        
+        exit_status = out.channel.recv_exit_status()          # Blocking call
+        if exit_status == 0:
+            print("Output folder created")
+        else:
+            print(err.readlines())
+            print("Error", exit_status)
+
 
     def start_measurement(self, context: RunnerContext) -> None:
         """Perform any activity required for starting measurements."""
         sampling_interval = context.run_variation['sampling']
         llm = context.run_variation['llm']
         code = context.run_variation['code']
+        experiment = self.name.split('/')[0]
+        code_path = f'{self.CODES_PATH}/{experiment}/{llm}/{code}.py'
 
-        profiler_cmd = f'sudo energibridge \
+        print(f'Running {code_path}')
+
+        profiler_cmd = f'sudo -S energibridge \
                         --interval {sampling_interval} \
-                        --output {context.run_dir / "energibridge.csv"} \
+                        --output {self.remote_output_folder}/energibridge.csv \
                         --summary \
-                        python3 ./code/{llm}/{code}.py'
+                        python3 {code_path}'
 
-        #time.sleep(1) # allow the process to run a little before measuring
-        energibridge_log = open(f'{context.run_dir}/energibridge.log', 'w')
-        self.profiler = subprocess.Popen(shlex.split(profiler_cmd), stdout=energibridge_log)
+        self.profiler = self.ssh_client.exec_command(profiler_cmd)
+        self.profiler[0].write(f'{self.PASSWORD}\n') # stdin
+
 
     def interact(self, context: RunnerContext) -> None:
         """Perform any interaction with the running target system here, or block here until the target finishes."""
-
-        # No interaction. We just run it for XX seconds.
-        # Another example would be to wait for the target to finish, e.g. via `self.target.wait()`
         pass
 
     def stop_measurement(self, context: RunnerContext) -> None:
         """Perform any activity here required for stopping measurements."""
-        self.profiler.wait()
+        exit_status = self.profiler[1].channel.recv_exit_status() # Blocking call
+        if exit_status == 0:
+            print('Code executed')
+            print(self.profiler[1].readlines()) # stdout
+        else:
+            print('Error', exit_status)
+            print(self.profiler[2].readlines()) # stderr
+
+
 
     def stop_run(self, context: RunnerContext) -> None:
         """Perform any activity here required for stopping the run.
         Activities after stopping the run should also be performed here."""
-        pass
+        print('Pulling remote file...')
+        time.sleep(1)
+        ftp_client=self.ssh_client.open_sftp()
+
+        try:
+            ftp_client.get(f'{self.remote_output_folder}/energibridge.csv',
+                           f'{context.run_dir / "energibridge.csv"}')
+            print('SUCCESS pulling file')
+        except FileNotFoundError as err:
+            print(f'FAILED to pull file energibridge.csv not found!')
+            _, stdout, _ = self.ssh_client.exec_command(f'ls {self.remote_output_folder}')
+            print(f'Folder contents of remote target location are:\n{stdout.readlines()}')
+
+        ftp_client.close()
+        self.ssh_client.close()
+        print("Connection closed")
+
     
     def populate_run_data(self, context: RunnerContext) -> Optional[Dict[str, Any]]:
         """Parse and process any measurement data here.
         You can also store the raw measurement data under `context.run_dir`
         Returns a dictionary with keys `self.run_table_model.data_columns` and their values populated"""
-
-        # energibridge.csv - Power consumption
         df = pd.read_csv(context.run_dir / "energibridge.csv")
-        with open(context.run_dir / "energibridge.log", 'r') as reader:
-            contents = reader.read()
-        
-        time = contents.split('for ')[1]
-        time = time.split(' sec')[0]
-        energy = contents.split('joules: ')[1]
-        energy = energy.split(' for ')[0]
 
-        if time:
-            total_time = float(time)
-        else:
-            total_time = -1
+        target_cols = []
+        for col in df.columns:
+            if 'CPU_USAGE_' in col:
+                target_cols.append(col)
 
-        if energy:
-            total_energy = float(energy)
-        else:
-            total_energy = -1
+        df['MAX_CPU_USAGE'] = df[target_cols].max(axis=1)
 
         run_data = {
-                'Time'                        : round(total_time, 3),
-                'TOTAL_DRAM_ENERGY (J)'       : round(df['DRAM_ENERGY (J)'].sum(), 3),
-                'TOTAL_PACKAGE_ENERGY (J)'    : round(df['PACKAGE_ENERGY (J)'].sum(), 3),
-                'TOTAL_PP0_ENERGY (J)'        : round(df['PP0_ENERGY (J)'].sum(), 3),
-                'TOTAL_MEMORY'                : round(df['TOTAL_MEMORY'].mean() if df['TOTAL_MEMORY'].std() == 0 else -1, 3),
-                'TOTAL_SWAP'                  : round(df['TOTAL_SWAP'].mean() if df['TOTAL_SWAP'].std() == 0 else -1, 3),
-                'AVG_USED_MEMORY'             : round(df['USED_MEMORY'].mean(), 3),
-                'AVG_USED_SWAP'               : round(df['USED_SWAP'].mean(), 3),
-                'TOTAL_ENERGY (J)'            : round(total_energy, 3),
+                'Time (s)'            : round((df['Time'].iloc[-1] - df['Time'].iloc[0])/1000, 3),
+                'AVG_MAX_CPU (%)'     : round(df['MAX_CPU_USAGE'].mean(), 3),
+                'AVG_USED_MEMORY'     : round(df['USED_MEMORY'].mean(), 3),
+                'AVG_USED_SWAP'       : round(df['USED_SWAP'].mean(), 3),
+                'PP0_ENERGY (J)'      : round(df['PP0_ENERGY (J)'].iloc[-1] - df['PP0_ENERGY (J)'].iloc[0], 3),
+                'DRAM_ENERGY (J)'     : round(df['DRAM_ENERGY (J)'].iloc[-1] - df['DRAM_ENERGY (J)'].iloc[0], 3),
+                'PACKAGE_ENERGY (J)'  : round(df['PACKAGE_ENERGY (J)'].iloc[-1] - df['PACKAGE_ENERGY (J)'].iloc[0], 3),
         }
         return run_data
+
 
     def after_experiment(self) -> None:
         """Perform any activity required after stopping the experiment here

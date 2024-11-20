@@ -21,7 +21,7 @@ class RunnerConfig:
 
     # ================================ USER SPECIFIC CONFIG ================================
     """The name of the experiment."""
-    name:                       str             = "blanks/results/2"
+    name:                       str             = "baseline/results/2"
 
     """The path in which Experiment Runner will create a folder with the name `self.name`, in order to store the
     results from this experiment. (Path does not need to exist - it will be created if necessary.)
@@ -73,18 +73,18 @@ class RunnerConfig:
         representing each run performed"""
         sampling_factor = FactorModel("sampling", [200])
 
-        #code = FactorModel("code", ['16', '4', '52', '53', '61'])
-        code = FactorModel("code", ['63', '66', '79', '90'])
+        #llm = FactorModel("llm", ['wizardcoder', 'code-millenials', 'deepseek-coder'])
+        llm = FactorModel("llm", ['gpt-4', 'chatgpt', 'speechless-codellama'])
+        code = FactorModel("code", ['16', '4', '52', '53', '61', '63', '66', '79', '90'])
         self.run_table_model = RunTableModel(
-            factors = [sampling_factor, code],
+            factors = [sampling_factor, llm, code],
             data_columns=['Time (s)', 'AVG_MAX_CPU (%)', 
                           'AVG_USED_MEMORY', 'AVG_USED_SWAP', 
-                          'PP0_ENERGY (J)', 'PP1_ENERGY (J)', 
+                          'PP0_ENERGY (J)', 
                           'DRAM_ENERGY (J)', 'PACKAGE_ENERGY (J)'],
             repetitions=21,
         )
         return self.run_table_model
-
 
     def before_experiment(self) -> None:
         """Perform any activity required before starting the experiment here
@@ -122,9 +122,10 @@ class RunnerConfig:
     def start_measurement(self, context: RunnerContext) -> None:
         """Perform any activity required for starting measurements."""
         sampling_interval = context.run_variation['sampling']
+        llm = context.run_variation['llm']
         code = context.run_variation['code']
         experiment = self.name.split('/')[0]
-        code_path = f'{self.CODES_PATH}/{experiment}/{code}.py'
+        code_path = f'{self.CODES_PATH}/{experiment}/{llm}/{code}.py'
 
         print(f'Running {code_path}')
 
@@ -146,11 +147,11 @@ class RunnerConfig:
         """Perform any activity here required for stopping measurements."""
         exit_status = self.profiler[1].channel.recv_exit_status() # Blocking call
         if exit_status == 0:
-            print(self.profiler[1].readlines()) # stdout
             print('Code executed')
+            print(self.profiler[1].readlines()) # stdout
         else:
-            print(self.profiler[2].readlines()) # stderr
             print('Error', exit_status)
+            print(self.profiler[2].readlines()) # stderr
 
 
 
@@ -194,7 +195,6 @@ class RunnerConfig:
                 'AVG_USED_MEMORY'     : round(df['USED_MEMORY'].mean(), 3),
                 'AVG_USED_SWAP'       : round(df['USED_SWAP'].mean(), 3),
                 'PP0_ENERGY (J)'      : round(df['PP0_ENERGY (J)'].iloc[-1] - df['PP0_ENERGY (J)'].iloc[0], 3),
-                'PP1_ENERGY (J)'      : round(df['PP1_ENERGY (J)'].iloc[-1] - df['PP1_ENERGY (J)'].iloc[0], 3),
                 'DRAM_ENERGY (J)'     : round(df['DRAM_ENERGY (J)'].iloc[-1] - df['DRAM_ENERGY (J)'].iloc[0], 3),
                 'PACKAGE_ENERGY (J)'  : round(df['PACKAGE_ENERGY (J)'].iloc[-1] - df['PACKAGE_ENERGY (J)'].iloc[0], 3),
         }
